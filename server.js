@@ -8,7 +8,7 @@ const http = require('http'),
       filePath = '';
       
       if (q.pathname.includes('documentation')) {
-        filePath = (__dirname + '/documentation.html');
+        filePath = ('https://github.com/Ironmike84/Movie_API/blob/main/documentation.html');
       } else {
         filePath = 'index.html';
       }
