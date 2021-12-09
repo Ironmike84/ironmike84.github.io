@@ -11,7 +11,7 @@ const http = require('http'),
       } else {
         filePath = 'index.html';
       }
-      fs.appendFile('log.txt', 'URL: ' + addr + '\nTimestamp: ' + new Date() + '\n\n', (err) => {
+      fs.appendFile('https://github.com/Ironmike84/Movie_API/blob/main/log.txt', 'URL: ' + addr + '\nTimestamp: ' + new Date() + '\n\n', (err) => {
         if (err) {
           console.log(err);
         } else {
