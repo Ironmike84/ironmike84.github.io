@@ -1,17 +1,18 @@
 const http = require('http'),
   fs = require('fs'),
   url = require('url');
-   http.createServer((request, response) => {
+  __dirname = "C:/Users/TRDFRG"
+  http.createServer((request, response) => {
     let addr = request.url,
       q = url.parse(addr, true),
       filePath = '';
       
       if (q.pathname.includes('documentation')) {
-        filePath = ('https://github.com/Ironmike84/Movie_API/blob/main/documentation.html');
+        filePath = (__dirname + '/Desktop/School/ServerSide//Server/documentation.html');
       } else {
         filePath = 'index.html';
       }
-      fs.appendFile('https://github.com/Ironmike84/Movie_API/blob/main/log.txt', 'URL: ' + addr + '\nTimestamp: ' + new Date() + '\n\n', (err) => {
+      fs.appendFile('log.txt', 'URL: ' + addr + '\nTimestamp: ' + new Date() + '\n\n', (err) => {
         if (err) {
           console.log(err);
         } else {
