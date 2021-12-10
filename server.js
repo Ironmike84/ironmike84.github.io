@@ -1,14 +1,14 @@
 const http = require('http'),
   fs = require('fs'),
   url = require('url');
-  __dirname = "C:/Users/TRDFRG"
+
   http.createServer((request, response) => {
     let addr = request.url,
       q = url.parse(addr, true),
       filePath = '';
       
       if (q.pathname.includes('documentation')) {
-        filePath = (__dirname + '/Desktop/School/ServerSide//Server/documentation.html');
+        filePath = (__dirname + '/documentation.html');
       } else {
         filePath = 'index.html';
       }
