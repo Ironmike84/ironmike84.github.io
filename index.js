@@ -1,6 +1,9 @@
 
 const express = require('express')
 const app = express()
+morgan = require('morgan');
+
+app.use(morgan('common'));
 
 
 app.get('/', function (req, res) {
