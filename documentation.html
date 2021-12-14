@@ -5,11 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet">
 </head>
 <style>
     body{
-        color: chartreuse;
+        font-family: 'Source Code Pro', monospace;
+           color: chartreuse;
         background-color: rgb(87, 83, 83);
+    }
+    h1{
+        color: orangered;
+        text-shadow: 2px 3px 6px rgb(0, 0, 0);
     }
 </style>
 <body>
@@ -17,17 +25,27 @@
     <h1>MOVIE API</h1>
 <hr>
 <p>The Movie API Call creates a server Request and imports the HTTP module and returns the URL Module Index File. 
-If user adds documentation to localHost:8080/documentation the user will be handed the documentation file.</p>
+If user adds documentation to localHost:3000/documentation the user will be handed the documentation file.</p>
 
-<ul>The Movie API will:
+UPDATE: 12/14/21<br>
+---------
+<p>The Movie API Utilizes express in Node.js to get the documentation file for the Project directory. Further
+    express.static was utilized to carry out the request. To get the documentation file from the project directory folder.
+    Also A "/Movies"  get request was added to the lifecycle.
+</p>
+
+<ul><strong>Movie API will:</strong>
+    <li>Provide Access to a Database of Movies</li>
     <li> Search and find Details about movies 
     (such as Titles directors, genres.) </li>
     <li>Users can create thier own account
     add personal information.</li>
-    <li>Create a list of thier favorite movies</li>
-    <li> Users Can Delete Movies Also from their list</li>
+    <li>Create a list of their favorite movies.</li>
+    <li> Users Can Delete Movies Also from their list.</li>
+    <li> Users Can Update Their personal Information</li>
+    <li>Users Can De-Register their Account</li>
  </ul>
 <hr>
-
+MJG 2021
 </body>
 </html>
