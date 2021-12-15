@@ -25,13 +25,27 @@ MJG 2021
     <th>Method:</th>
   </tr>
   <tr>
-    <td>None</td>
-    <td>None</td>
-    <td>None</td>
+    <td>All Movies</td>
+    <td>/Movies</td>
+    <td>GET</td>
   </tr>
   
   <tr>
-    <td>POST</td>
-    <td>GET</td>
+    <td>One Movie</td>
+    <td>/Movies[id]</td>
     <td>GET</td>
    </tr>
+
+  <tr>
+    <td>Find Actor</td>
+    <td>/Movies[id][actor]</td>
+    <td>GET</td>
+  </tr>
+  
+  <tr>
+    <td>Add Movie</td>
+    <td>/Movies</td>
+    <td>POST</td>
+  </tr>
+
+</table>
