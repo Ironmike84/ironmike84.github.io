@@ -23,59 +23,79 @@ MJG 2021
     <th>Request:</th>
     <th>Endpoint:</th>
     <th>Method:</th>
+    <th>Format</th>
+    <th>Description<th>
   </tr>
   <tr>
     <td>All Movies</td>
     <td>/Movies</td>
     <td>GET</td>
+    <td>JSON Format</td>
+    <td></td>
   </tr>
   
   <tr>
     <td>One Movie</td>
     <td>/Movies[id]</td>
     <td>GET</td>
+    <td>JSON Format</td>
+    <td></td>
    </tr>
 
   <tr>
     <td>Find Actor</td>
     <td>/Movies[id][actor]</td>
     <td>GET</td>
+    <td>JSON Format</td>
+    <td></td>
   </tr>
   
   <tr>
     <td>Find Genre</td>
     <td>/Movies[genre]</td>
     <td>Get</td>
+    <td>JSON Format</td>
+    <td></td>
   </tr>
   
   <tr>
     <td>Find Actor Details</td>
     <td>/Movies[actor][id][bio]</td>
     <td>GET</td>
+    <td>JSON Format</td>
+    <td></td>
   </tr>
   
   <tr>
     <td>Add Favorite Actor</td>
     <td>/Movies[id][actor]</td>
     <td>POST</td>
+    <td>JSON Format</td>
+    <td></td>
   </tr>
   
   <tr>
     <td>Add Favorite Movie</td>
     <td>/Movies[id]</td>
     <td>POST</td>
+    <td>JSON Format</td>
+    <td></td>
   </tr>
   
   <tr>
     <td>Remove Favorite Actor</td>
     <td>/Movies[id][actor]</td>
     <td>DELETE</td>
+    <td>JSON Format</td>
+    <td></td>
   </tr>
  
  <tr>
     <td>Delete Favorite Movie</td>
     <td>/Movies[favorites]</td>
     <td>DELETE</td>
+    <td>JSON Format</td>
+    <td></td>
   </tr>
   
 </table>
