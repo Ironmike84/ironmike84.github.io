@@ -20,13 +20,63 @@ app.get('/', function (req, res) {
   res.send('This is the Documentation Page.')
 })
 
-//-------------------------------------------------------------------------------------// GET Movies
-app.get('/movies', (req, res) => {
+//-------------------------------------------------------------------------------------// GET ALL Movies
+app.get('/Movies', (req, res) => {
   app.json(movieObject)
-  let responseText = 'This will get your movies!.';
+  let responseText = 'This will get your all your Movies!.';
   responseText += '<small>Requested at: ' + req.requestTime + '</small>';
   res.send(responseText);
 })
+
+//--------------------------------------------------------------------------------------// Single Movie
+app.get('/Movies[id]', (req, res) => {
+  app.json(movieObject)
+  res.send('Here is your Movie!');
+});
+
+//--------------------------------------------------------------------------------------// Find Actor
+app.get('/Movies[actor]', (req, res) => {
+  app.json(movieObject)
+  res.send('Here is the Actor Your were searching for!');
+});
+
+//--------------------------------------------------------------------------------------// Find Genre
+app.get('/Movies[genre]', (req, res) => {
+  app.json(movieObject)
+  res.send('Here is the Genre Your were searching for!');
+});
+
+
+//--------------------------------------------------------------------------------------// Find Actor Details
+app.get('/Movies[actor][id][bio]', (req, res) => {
+  app.json(movieObject)
+  res.send('Favorite Actor Has been Added!');
+});
+
+
+//--------------------------------------------------------------------------------------// Add Favorite Actor
+app.post('/Movies[favorites][actor]', (req, res) => {
+  app.json(movieObject)
+  res.send('Favorite Actor Has been Added!');
+});
+
+//--------------------------------------------------------------------------------------// Add Favorite Movie
+app.post('/Movies[favorites][movie]', (req, res) => {
+  app.json(movieObject)
+  res.send('Favorite Movie Has been Added!');
+});
+
+//--------------------------------------------------------------------------------------// Delete Favorite Actor
+app.delete('/Movies[favorites][actor]', (req, res) => {
+  app.json(movieObject)
+  res.send('Favorite Actor Has been Deleted!');
+});
+
+//--------------------------------------------------------------------------------------// Delete Favorite Movie
+app.delete('/Movies[favorites][movie]', (req, res) => {
+  app.json(movieObject)
+  res.send('Favorite Movie has been Deleted!');
+});
 
 //-------------------------------------------------------------------------------------// Error Handling
 app.use((err, req, res, next) => {
