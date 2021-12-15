@@ -17,3 +17,21 @@ Movie API will:
 
 <hr>
 MJG 2021
+
+<table>
+  <tr>
+    <th>Request:</th>
+    <th>Endpoint:</th>
+    <th>Method:</th>
+  </tr>
+  <tr>
+    <td>None</td>
+    <td>None</td>
+    <td>None</td>
+  </tr>
+  
+  <tr>
+    <td>POST</td>
+    <td>GET</td>
+    <td>GET</td>
+   </tr>
