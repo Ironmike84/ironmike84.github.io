@@ -31,7 +31,7 @@ MJG 2021
     <td>/Movies</td>
     <td>GET</td>
     <td>JSON Format</td>
-    <td></td>
+    <td>Gets All Movies</td>
   </tr>
   
   <tr>
@@ -39,7 +39,7 @@ MJG 2021
     <td>/Movies[id]</td>
     <td>GET</td>
     <td>JSON Format</td>
-    <td></td>
+    <td>Returns a Single Movie</td>
    </tr>
 
   <tr>
@@ -47,7 +47,7 @@ MJG 2021
     <td>/Movies[actors][id]</td>
     <td>GET</td>
     <td>JSON Format</td>
-    <td>Returns a Sing Actor</td>
+    <td>Returns a Single Actor</td>
   </tr>
   
   <tr>
@@ -68,7 +68,7 @@ MJG 2021
   
   <tr>
     <td>Add Favorite Actor</td>
-    <td>/Movies[actors]</td>
+    <td>/Movies[actors][id][favorites][actors]</td>
     <td>POST</td>
     <td>JSON Format</td>
     <td>Adds Users Favorite Actor to their list</td>
@@ -76,7 +76,7 @@ MJG 2021
   
   <tr>
     <td>Add Favorite Movie</td>
-    <td>/Movies[id]</td>
+    <td>/Movies[id][favorites][movies]</td>
     <td>POST</td>
     <td>JSON Format</td>
     <td>Adds Favorite Movie to their list</td>
