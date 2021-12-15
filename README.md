@@ -43,6 +43,18 @@ MJG 2021
   </tr>
   
   <tr>
+    <td>Find Genre</td>
+    <td>/Movies[genre]</td>
+    <td>Get</td>
+  </tr>
+  
+  <tr>
+    <td>Find Actor Details</td>
+    <td>/Movies[actor][id][bio]</td>
+    <td>GET</td>
+  </tr>
+  
+  <tr>
     <td>Add Favorite Actor</td>
     <td>/Movies[id][actor]</td>
     <td>POST</td>
@@ -59,22 +71,11 @@ MJG 2021
     <td>/Movies[id][actor]</td>
     <td>DELETE</td>
   </tr>
-  
-  <tr>
-    <td>Add Movie</td>
-    <td>/Movies</td>
-    <td>POST</td>
-  </tr>
-
-  <tr>
-    <td>Add Favorite Actor</td>
-    <td>/Movies[id][actor]</td>
-    <td>POST</td>
-  </tr>
-  
-  <tr>
-    <td>Delete Movie</td>
-    <td>/Movies</td>
+ 
+ <tr>
+    <td>Delete Favorite Movie</td>
+    <td>/Movies[favorites]</td>
     <td>DELETE</td>
   </tr>
+  
 </table>
