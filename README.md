@@ -43,9 +43,38 @@ MJG 2021
   </tr>
   
   <tr>
+    <td>Add Favorite Actor</td>
+    <td>/Movies[id][actor]</td>
+    <td>POST</td>
+  </tr>
+  
+  <tr>
+    <td>Add Favorite Movie</td>
+    <td>/Movies[id]</td>
+    <td>POST</td>
+  </tr>
+  
+  <tr>
+    <td>Remove Favorite Actor</td>
+    <td>/Movies[id][actor]</td>
+    <td>DELETE</td>
+  </tr>
+  
+  <tr>
     <td>Add Movie</td>
     <td>/Movies</td>
     <td>POST</td>
   </tr>
 
+  <tr>
+    <td>Add Favorite Actor</td>
+    <td>/Movies[id][actor]</td>
+    <td>POST</td>
+  </tr>
+  
+  <tr>
+    <td>Delete Movie</td>
+    <td>/Movies</td>
+    <td>DELETE</td>
+  </tr>
 </table>
