@@ -1,5 +1,5 @@
 MOVIE API
-==================================================================================================================================================================================
+<hr>
 The Movie API Call creates a server Request and imports the HTTP module and returns the URL Module Index File. If user adds documentation to localHost:3000/documentation the user will be handed the documentation file.
 
 UPDATE: 12/14/21
@@ -26,7 +26,7 @@ MJG 2021
     <th>Format</th>
     <th>Description<th>
   </tr>
-  <tr style="text-align:center">
+  <tr>
     <td>All Movies</td>
     <td>/Movies</td>
     <td>GET</td>
