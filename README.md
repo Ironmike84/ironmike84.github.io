@@ -26,7 +26,7 @@ MJG 2021
     <th>Format</th>
     <th>Description<th>
   </tr>
-  <tr>
+  <tr style="text-align:center">
     <td>All Movies</td>
     <td>/Movies</td>
     <td>GET</td>
