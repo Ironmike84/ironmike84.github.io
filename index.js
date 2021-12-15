@@ -5,10 +5,7 @@ const express = require('express')
 const app = express()
 var morgan = require('morgan')
 
-
 //-------------------------------------------------------------------------------------// USE MORGAN
-
-
 app.get('/', function (req, res) {
 app.use(morgan('combined'));
 res.send('hello, world!')
@@ -21,7 +18,7 @@ app.get('/', function (req, res) {
 })
 
 //-------------------------------------------------------------------------------------// GET ALL Movies
-app.get('/Movies', (req, res) => {
+app.get('/Movies:name', (req, res) => {
   app.json(movieObject)
   let responseText = 'This will get your all your Movies!.';
   responseText += '<small>Requested at: ' + req.requestTime + '</small>';
@@ -29,51 +26,51 @@ app.get('/Movies', (req, res) => {
 })
 
 //--------------------------------------------------------------------------------------// Single Movie
-app.get('/Movies[id]', (req, res) => {
+app.get('/Movies[id]:name', (req, res) => {
   app.json(movieObject)
   res.send('Here is your Movie!');
 });
 
 //--------------------------------------------------------------------------------------// Find Actor
-app.get('/Movies[actor]', (req, res) => {
+app.get('/Movies[actor]:name', (req, res) => {
   app.json(movieObject)
   res.send('Here is the Actor Your were searching for!');
 });
 
 //--------------------------------------------------------------------------------------// Find Genre
-app.get('/Movies[genre]', (req, res) => {
+app.get('/Movies[genre]:name', (req, res) => {
   app.json(movieObject)
   res.send('Here is the Genre Your were searching for!');
 });
 
 
 //--------------------------------------------------------------------------------------// Find Actor Details
-app.get('/Movies[actor][id][bio]', (req, res) => {
+app.get('/Movies[actor][id][bio]:name', (req, res) => {
   app.json(movieObject)
   res.send('Favorite Actor Has been Added!');
 });
 
 
 //--------------------------------------------------------------------------------------// Add Favorite Actor
-app.post('/Movies[favorites][actor]', (req, res) => {
+app.post('/Movies[favorites][actor]:name', (req, res) => {
   app.json(movieObject)
   res.send('Favorite Actor Has been Added!');
 });
 
 //--------------------------------------------------------------------------------------// Add Favorite Movie
-app.post('/Movies[favorites][movie]', (req, res) => {
+app.post('/Movies[favorites][movie]:name', (req, res) => {
   app.json(movieObject)
   res.send('Favorite Movie Has been Added!');
 });
 
 //--------------------------------------------------------------------------------------// Delete Favorite Actor
-app.delete('/Movies[favorites][actor]', (req, res) => {
+app.delete('/Movies[favorites][actor]:name', (req, res) => {
   app.json(movieObject)
   res.send('Favorite Actor Has been Deleted!');
 });
 
 //--------------------------------------------------------------------------------------// Delete Favorite Movie
-app.delete('/Movies[favorites][movie]', (req, res) => {
+app.delete('/Movies[favorites][movie]:name', (req, res) => {
   app.json(movieObject)
   res.send('Favorite Movie has been Deleted!');
 });
