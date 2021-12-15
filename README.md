@@ -18,7 +18,7 @@ Movie API will:
 <hr>
 MJG 2021
 
-<table>
+<table style="text-align:center">
   <tr>
     <th>Request:</th>
     <th>Endpoint:</th>
