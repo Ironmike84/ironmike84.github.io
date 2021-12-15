@@ -97,5 +97,4 @@ MJG 2021
     <td>JSON Format</td>
     <td>Removes favorite Movie from Users list</td>
   </tr>
-  
-</table>
+
