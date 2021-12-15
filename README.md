@@ -44,34 +44,34 @@ MJG 2021
 
   <tr>
     <td>Find Actor</td>
-    <td>/Movies[id][actor]</td>
+    <td>/Movies[actors][id]</td>
     <td>GET</td>
     <td>JSON Format</td>
-    <td></td>
+    <td>Returns a Sing Actor</td>
   </tr>
   
   <tr>
     <td>Find Genre</td>
-    <td>/Movies[genre]</td>
-    <td>Get</td>
+    <td>/Movies[genres]</td>
+    <td>GET</td>
     <td>JSON Format</td>
-    <td></td>
+    <td>Returns All Movie Genres</td>
   </tr>
   
   <tr>
     <td>Find Actor Details</td>
-    <td>/Movies[actor][id][bio]</td>
+    <td>/Movies[actors][id][bio]</td>
     <td>GET</td>
     <td>JSON Format</td>
-    <td></td>
+    <td>Returns data about each actors Bio Data Birth Year Death year and Movies Played</td>
   </tr>
   
   <tr>
     <td>Add Favorite Actor</td>
-    <td>/Movies[id][actor]</td>
+    <td>/Movies[actors]</td>
     <td>POST</td>
     <td>JSON Format</td>
-    <td></td>
+    <td>Adds Users Favorite Actor to their list</td>
   </tr>
   
   <tr>
@@ -79,23 +79,23 @@ MJG 2021
     <td>/Movies[id]</td>
     <td>POST</td>
     <td>JSON Format</td>
-    <td></td>
+    <td>Adds Favorite Movie to their list</td>
   </tr>
   
   <tr>
     <td>Remove Favorite Actor</td>
-    <td>/Movies[id][actor]</td>
+    <td>/Movies[favorites][actors]</td>
     <td>DELETE</td>
     <td>JSON Format</td>
-    <td></td>
+    <td>Removes favorite Actor from Users list</td>
   </tr>
  
  <tr>
     <td>Delete Favorite Movie</td>
-    <td>/Movies[favorites]</td>
+    <td>/Movies[favorites][movies]</td>
     <td>DELETE</td>
     <td>JSON Format</td>
-    <td></td>
+    <td>Removes favorite Movie from Users list</td>
   </tr>
   
 </table>
