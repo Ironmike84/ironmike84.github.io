@@ -1,36 +1,11 @@
-//-----------------------------------------------INDEX.JS------------------------------------------------------------//
-
-//-------------------------------------------------------------------------------------// Variables
-const express = require('express')
+const express = require('express');
 const app = express()
-var morgan = require('morgan')
+const PORT = 3000
 
-//-------------------------------------------------------------------------------------// USE MORGAN
-app.get('/', function (req, res) {
-app.use(morgan('combined'));
-res.send('hello, world!')
+app.use(express.static('public'));
+
+app.get('/', (req, res)=>{
+    res.send('HELLO MIKE!!!')
 })
 
-//-------------------------------------------------------------------------------------// GET Documentation
-app.get('/', function (req, res) {
-  app.use('/documentation.html', express.static(__dirname + '/documentation.html'));
-  res.send('This is the Documentation Page.')
-})
-
-//-------------------------------------------------------------------------------------// GET ALL Movies
-app.get('/movies', (req, res) => {
-  const movieObject = {title: "Harry Potter", characters:["Harry Potter, Ron Weasley"]}
-   res.json(movieObject)
-  let responseText = 'This will get your all your Movies!.';
-  responseText += '<small>Requested at: ' + req.requestTime + '</small>';
-  res.send(responseText);
-})
-
-
-//-------------------------------------------------------------------------------------// Error Handling
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
-//-------------------------------------------------------------------------------------// Listen Request 
-app.listen(3000, console.log('now listening on port 3000'))
+app.listen(PORT, ()=> console.log(`Listening on ${PORT}`))
