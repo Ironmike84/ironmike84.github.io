@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 //-------------------------------------------------------------------------------------// GET ALL Movies
 app.get('/movies', (req, res) => {
   const movieObject = {title: "Harry Potter", characters:["Harry Potter, Ron Weasley"]}
-   app.json(movieObject)
+   res.json(movieObject)
   let responseText = 'This will get your all your Movies!.';
   responseText += '<small>Requested at: ' + req.requestTime + '</small>';
   res.send(responseText);
