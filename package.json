@@ -1,16 +1,16 @@
 {
-  "name": "movie_api",
+  "name": "expressfiles",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "node": "^17.2.0"
   }
 }
