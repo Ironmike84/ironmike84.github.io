@@ -87,7 +87,7 @@ MOVIE REST API ENDPOINTS:
   
   <tr>
     <td>One Movie</td>
-    <td>/Movies[id]</td>
+    <td>/Movies/[id]</td>
     <td>GET</td>
     <td>JSON Format</td>
     <td>Returns a Single Movie</td>
@@ -95,7 +95,7 @@ MOVIE REST API ENDPOINTS:
 
   <tr>
     <td>Find Actor</td>
-    <td>/Movies[actors][id]</td>
+    <td>/Movies/[actors]</td>
     <td>GET</td>
     <td>JSON Format</td>
     <td>Returns a Single Actor</td>
@@ -103,23 +103,32 @@ MOVIE REST API ENDPOINTS:
   
   <tr>
     <td>Find Genre</td>
-    <td>/Movies[genres]</td>
+    <td>/Movies/[genres]</td>
     <td>GET</td>
     <td>JSON Format</td>
     <td>Returns All Movie Genres</td>
   </tr>
   
   <tr>
-    <td>Find Actor Details</td>
-    <td>/Movies[actors][id][bio]</td>
+    <td>Find Actor BIO</td>
+    <td>/Movies/[actors]/[id]/[bio]</td>
     <td>GET</td>
     <td>JSON Format</td>
     <td>Returns data about each actors Bio <br>Data Birth Year Death year and Movies Played</td>
   </tr>
   
   <tr>
+    <td>GET Movie Title:</td>
+    <td>/Movies/</td>
+    <td>GET</td>
+    <td>JSON Format</td>
+    <td>Returns Each Movie Title</td>
+  </tr>
+  
+
+  <tr>
     <td>Add Favorite Actor</td>
-    <td>/Movies[actors][id][favorites][actors]</td>
+    <td>/Movies/[favorites]/[favActors]</td>
     <td>POST</td>
     <td>JSON Format</td>
     <td>Adds Users Favorite Actor to their list</td>
@@ -127,23 +136,23 @@ MOVIE REST API ENDPOINTS:
   
   <tr>
     <td>Add Favorite Movie</td>
-    <td>/Movies[id][favorites][movies]</td>
+    <td>/Movies/[favorites]/[favMovies]</td>
     <td>POST</td>
     <td>JSON Format</td>
     <td>Adds Favorite Movie to their list</td>
   </tr>
   
   <tr>
-    <td>Remove Favorite Actor</td>
-    <td>/Movies[favorites][actors]</td>
+    <td>Remove Favorite Actor By ID</td>
+    <td>/Movies/[favorites]/[favActors]/[id]</td>
     <td>DELETE</td>
     <td>JSON Format</td>
     <td>Removes favorite Actor from Users list</td>
   </tr>
  
  <tr>
-    <td>Delete Favorite Movie</td>
-    <td>/Movies[favorites][movies]</td>
+    <td>Delete Favorite Movie by ID</td>
+    <td>/Movies/[favorites]/[favMovies]/[id]</td>
     <td>DELETE</td>
     <td>JSON Format</td>
     <td>Removes favorite Movie from Users list</td>
