@@ -113,15 +113,15 @@ if (actor) {
 
 //-----------------------------------------------------------------------------------------------------// POST NEW FAV ACTOR
 app.post('/Movies/[favorites]/[actors]/:name', (req, res) => {
-    let newActor = req.body;
+    let newFavActor = req.body;
   
-    if(!newActor.name) {
+    if(!newFavActor.name) {
       const message = 'Missing "Movie Name" in request body';
       res.status(400).send(message);
     } else {
-      newActor.id = uuid.v4();
-      movieObject.push(newActor);
-      res.status(201).send(newActor);
+      newFavActor.id = uuid.v4();
+      movieObject.push(newFavActor);
+      res.status(201).send(newFavActor);
     }
   });
 
@@ -130,7 +130,7 @@ app.delete('/Movies/[favorites]/[actors]/:name', (req, res) => {
     let actor = actors.find((actor) => { return actor.id === req.params.id });
   
     if (actor) {
-      actors = Movies.filter((actor) => { return actor.id !== req.params.id });
+      favActors = Movies.filter((actor) => { return actor.id !== req.params.id });
       res.status(201).send(`Actor '${req.params.id}' was deleted.`);
     }
   });
@@ -140,12 +140,62 @@ app.delete('/Movies/[favorites]/[movies]/:name', (req, res) => {
     let movie = movieObject.find((movie) => { return movie.id === req.params.id });
   
     if (movie) {
-      movies = movieObject.filter((movie) => { return movie.id !== req.params.id });
+      favMovies = movieObject.filter((movie) => { return movie.id !== req.params.id });
       movieObject.pop(movie)
       res.status(201).send(`Movie '${req.params.name}' was deleted.`);
     }
   });
   
+
+
+//=================================================================================================== USER REGISTRY   
+
+//-----------------------------------------------------------------------------------------------------// CREATE NEW USER
+app.post('/Movies/[Users]/[userName]/:name', (req, res) => {
+    let newUsername = req.body;
+  
+    if(!newUsername.name) {
+      const message = 'Missing "Movie Name" in request body';
+      res.status(400).send(message);
+    } else {
+      newUsername.id = uuid.v4();
+      movieObject.push(newUsername);
+      res.status(201).send(newUsername);
+      res.send('Successful registration!!!')
+    }
+
+  });
+
+
+//---------------------------------------------------------------------------------// Allow users to update their user information
+app.put('/Movies/[Users]/[userName]/:name', (req, res) => {
+    let newUsername = req.body;
+  
+    if(!newUsername.name) {
+      const message = 'Missing "Movie Name" in request body';
+      res.status(400).send(message);
+    } else {
+      newUsername.id = uuid.v4();
+      movieObject.push(newUsername);
+      res.status(201).send(newUsername);
+      res.send('Successful Update!!!')
+    }
+    
+  });
+
+
+//--------------------------------------------------------------------------------------// Delete Favorite Movie
+app.delete('/Movies/[users]/[names]/:name', (req, res) => {
+    let usersName = movieObject.find((username) => { return username.id === req.params.id });
+  
+    if (usersName) {
+      usersName = movieObject.filter((username) => { return username.id !== req.params.id });
+      movieObject.pop(usersName)
+      res.status(201).send(`User '${req.params.id}' was deleted.`);
+    }
+  });
+  
+
 //-----------------------------------------------------------------------------------------------------// ERROR MESSAGE
 app.use((err, req, res, next) => {
     console.error(err.stack);
