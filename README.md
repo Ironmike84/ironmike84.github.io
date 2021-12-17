@@ -1,5 +1,5 @@
    
-MOVIE REST API
+<h1>MOVIE REST API</h1>
 <hr>
 <p>The Movie API Call creates a server Request and imports the HTTP module and returns the URL Module Index File. 
 If user adds documentation to localHost:3000/documentation the user will be handed the documentation file.</p>
