@@ -18,71 +18,42 @@ app.use('/public', express.static('public'));
 //-------------------------------------------------------------------------------------// GET ALL Movies
 app.get('/Movies/:name', (req, res) => {
     res.json(movieObject)
-       res.send('Here is the Movie wou were searching for!');
+    res.send('Here is the Movie wou were searching for!');
   })
 
 //--------------------------------------------------------------------------------------// Single Movie
-app.get('/Movies/[id]/:name', (req, res) => {
-    res.json(movieObject.find((movie) =>
-    { return movie.name === req.params.name }));
-   res.send('Here is the Movie wou were searching for!');
+app.get('/Movies/:movie', (req, res) => {
+    res.send('Here is the Movie wou were searching for!');
   });
   
 //--------------------------------------------------------------------------------------// Find Actor
-app.get('/Movies/[actors]/:name', (req, res) => {
-    res.json(movieObject.find((actor) =>
-      { return actor.name === req.params.name }));
-     res.send(`Here is the Actor you were searching for! ${actor.name}.`);
+app.get('/Movies/actors/:actor', (req, res) => {
+    res.send(`Here is the Actor you were searching for!`);
   });
 
 //--------------------------------------------------------------------------------------// Find Genre
-app.get('/Movies/[genres]/:name', (req, res) => {
-    res.json(movieObject.find((genre) =>
-      { return genre.name === req.params.name }));
-      res.send(`Here is the Genre you were searching for! ${genre.name}.`);
+app.get('/Movies/genres/:genre', (req, res) => {
+      res.send(`Here is the Genre you were searching for!`);
   });
-   
 
 //--------------------------------------------------------------------------------------// Find Actor Details
-app.get('/Movies/[actors]/[id]/[bio]/:name', (req, res) => {
-    res.json(moviesObject.find((actor) =>
-      { return actor.bio === req.params.name }));
-      res.send(`Here is the Genre you were searching for! ${actor.bio}.`);
+app.get('/Movies/:actors/bio/:name', (req, res) => {
+      res.send(`Here is the Actors Bio you were Searching for!!`);
   });
 
 
 //-----------------------------------------------------------------------------------------------------// GET MOVIE TITLE
-app.get('/Movies/:name', (req, res) => {
-    res.json(movieObject.find( (movie) =>
-      { return movie.name === req.params.name }));
-  });
-  let movieTitle = movieObject.find( (movie) =>
-  { return movie.name === req.params.name });
-
-if (movie) {
-  movieTitle.name[req.params.name] = req.params.name;
-  res.status(201).send( `Movie Title: '${req.params.name}`);
-} else {
-  res.status(404).send(`Movie Title: '${req.params.name}' was not found.`);
-}
+app.get('/Movies/:title', (req, res) => { 
+  res.send(`Here is the Actors Bio you were Searching for!!`);
+});
 
 //--------------------------------------------------------------------------------------------------------// GET FAV MOVIE
-app.get('/Movies/[favorites]/[movies]/:name', (req, res) => {
-    res.json(movieObject.find((movie) =>
-      { return movie.name === req.params.name }));
-  });
-  let favMovieName = movieObject.find( (movie) =>
-  { return movie.name === req.params.name });
-
-if (movie) {
-  favMovieName.name[req.params.name] = req.params.name;
-  res.status(201).send(`Movie Name: '${req.params.name}`);
-} else {
-  res.status(404).send(`Movie Name: '${req.params.name}' was not found.`);
-}
+app.get('/Users/favorites/movies/:movie', (req, res) => {
+  res.send(`Here is the Actors Bio you were Searching for!!`);
+});
 
 //-----------------------------------------------------------------------------------------------------// POST NEW FAV MOVIE
-  app.post('/Movies/[favorites]/[movies]/:name', (req, res) => {
+  app.post('/Users/favorites/movies/:movie', (req, res) => {
     let newFavMovie = req.body;
   
     if(!newFavMovie.name) {
@@ -96,27 +67,16 @@ if (movie) {
   });
   
 //--------------------------------------------------------------------------------------------------------// GET FAV ACTOR
-app.get('/Movies/[favorites]/[actors]/:name', (req, res) => {
-    res.json(movieObject.find( (actor) =>
-      { return actor.name === req.params.name }));
-  });
-
-  let newFavActor = movieObject.find( (actor) =>
-  { return newFavActor.name === req.params.name });
-
-if (actor) {
-  newFavActor.name[req.params.name] = req.params.name;
-  res.status(201).send( `Actors Name: '${req.params.name}' was added.`);
-} else {
-  res.status(404).send(`Actors Name: '${req.params.name}' was not found.`);
-}
+app.get('/Users/favorites/actors/:actor', (req, res) => {
+    res.send(`Here is the Actor you were Searching for!!`);
+});
 
 //-----------------------------------------------------------------------------------------------------// POST NEW FAV ACTOR
-app.post('/Movies/[favorites]/[actors]/:name', (req, res) => {
+app.post('/Users/favorites/actors/:actor', (req, res) => {
     let newFavActor = req.body;
   
     if(!newFavActor.name) {
-      const message = 'Missing "Movie Name" in request body';
+      const message = 'Missing "Actor Name" in request body';
       res.status(400).send(message);
     } else {
       newFavActor.id = uuid.v4();
@@ -126,7 +86,7 @@ app.post('/Movies/[favorites]/[actors]/:name', (req, res) => {
   });
 
 //--------------------------------------------------------------------------------------// Delete Favorite Actor
-app.delete('/Movies/[favorites]/[actors]/:name', (req, res) => {
+app.delete('/Users/favorites/actors/:actor', (req, res) => {
     let actor = actors.find((actor) => { return actor.id === req.params.id });
   
     if (actor) {
@@ -136,7 +96,7 @@ app.delete('/Movies/[favorites]/[actors]/:name', (req, res) => {
   });
 
 //--------------------------------------------------------------------------------------// Delete Favorite Movie
-app.delete('/Movies/[favorites]/[movies]/:name', (req, res) => {
+app.delete('/Users/favorites/movies/:movie', (req, res) => {
     let movie = movieObject.find((movie) => { return movie.id === req.params.id });
   
     if (movie) {
@@ -151,11 +111,11 @@ app.delete('/Movies/[favorites]/[movies]/:name', (req, res) => {
 //=================================================================================================== USER REGISTRY   
 
 //-----------------------------------------------------------------------------------------------------// CREATE NEW USER
-app.post('/Movies/[Users]/[userName]/:name', (req, res) => {
+app.post('/Users/userNames/:username', (req, res) => {
     let newUsername = req.body;
   
     if(!newUsername.name) {
-      const message = 'Missing "Movie Name" in request body';
+      const message = 'Missing "User Name" in request body';
       res.status(400).send(message);
     } else {
       newUsername.id = uuid.v4();
@@ -168,7 +128,7 @@ app.post('/Movies/[Users]/[userName]/:name', (req, res) => {
 
 
 //---------------------------------------------------------------------------------// Allow users to update their user information
-app.put('/Movies/[Users]/[userName]/:name', (req, res) => {
+app.put('/Users/userNames/:username', (req, res) => {
     let newUsername = req.body;
   
     if(!newUsername.name) {
@@ -185,7 +145,7 @@ app.put('/Movies/[Users]/[userName]/:name', (req, res) => {
 
 
 //--------------------------------------------------------------------------------------// Delete Favorite Movie
-app.delete('/Movies/[users]/[names]/:name', (req, res) => {
+app.delete('/Users/favorites/movies/:movie', (req, res) => {
     let usersName = movieObject.find((username) => { return username.id === req.params.id });
   
     if (usersName) {
