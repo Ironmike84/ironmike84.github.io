@@ -43,96 +43,53 @@ app.get('/Movies/actors/bio/:bio', (req, res) => {
 
 //-----------------------------------------------------------------------------------------------------// GET MOVIE TITLE
 app.get('/Movies/titles/:title', (req, res) => { 
-  res.send('Here is the title you were Searching for!!');
+  res.send('Here is the Title you were Searching for!!');
 });
 
 //--------------------------------------------------------------------------------------------------------// GET FAV MOVIE
 app.get('/Users/favorites/movies/:movie', (req, res) => {
-  res.send('Here is the movie you were Searching for!!');
+  res.send('Here is the Movie you were Searching for!!');
 });
 
 //-----------------------------------------------------------------------------------------------------// POST NEW FAV MOVIE
   app.post('/Users/favorites/movies/:movie', (req, res) => {
-    let newFavMovie = req.body;
-    if(!newFavMovie.name) {
-      const message = 'Missing "Movie Name" in request body';
-      res.status(400).send(message);
-    } else {
-      newFavMovie.id = uuid.v4();
-      movieObject.push(newFavMovie);
-      res.status(201).send(newFavMovie);
-    }
+    res.send('New Movie Added!!');
   });
   
 //--------------------------------------------------------------------------------------------------------// GET FAV ACTOR
 app.get('/Users/favorites/actors/:actor', (req, res) => {
-    res.send(`Here is the Actor you were Searching for!!`);
+    res.send('Here is the Actor you were Searching for!!');
 });
 
 //-----------------------------------------------------------------------------------------------------// POST NEW FAV ACTOR
 app.post('/Users/favorites/actors/:actor', (req, res) => {
-    let newFavActor = req.body;
-    if(!newFavActor.name) {
-      const message = 'Missing "Actor Name" in request body';
-      res.status(400).send(message);
-    } else {
-      newFavActor.id = uuid.v4();
-      movieObject.push(newFavActor);
-      res.status(201).send(newFavActor);
-    }
+  res.send('New Actor Added');
   });
 
 //--------------------------------------------------------------------------------------// Delete Favorite Actor
 app.delete('/Users/favorites/actors/:actor', (req, res) => {
-    let actor = actors.find((actor) => { return actor.id === req.params.id });
-  
-    if (actor) {
-      favActors = Movies.filter((actor) => { return actor.id !== req.params.id });
-      res.status(201).send(`Actor '${req.params.id}' was deleted.`);
-    }
+  res.send('Actor Deleted!!');
   });
 
 //--------------------------------------------------------------------------------------// Delete Favorite Movie
 app.delete('/Users/favorites/movies/:movie', (req, res) => {
-    let movie = movieObject.find((movie) => { return movie.id === req.params.id });
-  
-    if (movie) {
-      favMovies = movieObject.filter((movie) => { return movie.id !== req.params.id });
-      movieObject.pop(movie)
-      res.status(201).send(`Movie '${req.params.name}' was deleted.`);
-    }
+  res.send('Movie Deleted!!');
   });
   
 //=================================================================================================== USER REGISTRY   
 
 //-----------------------------------------------------------------------------------------------------// CREATE NEW USER
 app.post('/Users/userNames/:username', (req, res) => {
-    let newUsername = req.body;
-  
-    if(!newUsername.name) {
-      const message = 'Missing "User Name" in request body';
-      res.status(400).send(message);
-    } else {
-      newUsername.id = uuid.v4();
-      movieObject.push(newUsername);
-      res.status(201).send(newUsername);
-      res.send('Successful registration!!!')
-    }
+    res.send('New User Created');
   });
 //---------------------------------------------------------------------------------// Allow users to update their user information
 app.put('/Users/userNames/:username', (req, res) => {
-    let newUsername = req.body;
-  
-    if(!newUsername.name) {
-      const message = 'Missing "Movie Name" in request body';
-      res.status(400).send(message);
-    } else {
-      newUsername.id = uuid.v4();
-      movieObject.push(newUsername);
-      res.status(201).send(newUsername);
-      res.send('Successful Update!!!')
-    }
-    
+  res.send('Information Updated!!');
+  });
+
+  //---------------------------------------------------------------------------------// Allow users to update their user information
+app.delete('/Users/userNames/:username', (req, res) => {
+  res.send('User Deleted!!');
   });
 //-----------------------------------------------------------------------------------------------------// ERROR MESSAGE
 app.use((err, req, res, next) => {
@@ -140,4 +97,4 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
   });
 //-----------------------------------------------------------------------------------------------------// PORT CALL
-app.listen(PORT, ()=>(console.log(`Listening On Port: ${PORT}`)))
+app.listen(PORT, ()=>(console.log(`Listening On Port: ${PORT}`)));
