@@ -1,52 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet">
-</head>
-<style>
-    body{
-        font-family: 'Source Code Pro', monospace;
-        color: rgb(214, 214, 214);
-        background-color: rgb(29, 27, 27);
-    }
-    h1{
-        color: chartreuse;
-        text-shadow: 2px 3px 6px rgb(0, 0, 0);
-    }
-
-    table{
-        margin-left: 50px ;
-        padding: 7px;
-        border: .5px solid rgb(129, 11, 2);
-    }
-    hr{
-        border: 1px inset rgba(82, 78, 78, 0.863)
-    }
-    th{
-        background-color: rgba(26, 24, 24, 0.863);
-        border: .5px outset rgb(136, 3, 3);
-    }
-  
-    td{
-        padding: 7px;
-        width: fit-content;
-        border: .5px inset rgb(83, 87, 82);
-    }
-</style>
-<body>
-    
-    <h1>MOVIE REST API</h1>
+<h1>MOVIE REST API</h1>
 <hr>
 <p>The Movie API Call creates a server Request and imports the HTTP module and returns the URL Module Index File. 
 If user adds documentation to localHost:3000/documentation the user will be handed the documentation file.</p>
 
-UPDATE: 12/14/21<br>
+<h2>UPDATE: 12/14/21</h2><br>
 <hr>
 <p>The Movie API Utilizes express in Node.js to get the documentation file for the Project directory. Further
     express.static was utilized to carry out the request. To get the documentation file from the project directory folder.
@@ -194,5 +151,3 @@ MOVIE REST API ENDPOINTS:
 
 
 MJG 2021
-</body>
-</html>
