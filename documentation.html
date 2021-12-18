@@ -79,7 +79,7 @@ MOVIE REST API ENDPOINTS:
   </tr>
   <tr>
     <td>All Movies</td>
-    <td>/Movies</td>
+    <td>/Movies/:movies</td>
     <td>GET</td>
     <td>JSON Format</td>
     <td>Gets All Movies</td>
@@ -87,7 +87,7 @@ MOVIE REST API ENDPOINTS:
   
   <tr>
     <td>One Movie</td>
-    <td>/Movies/[id]</td>
+    <td>/Movies/:movies</td>
     <td>GET</td>
     <td>JSON Format</td>
     <td>Returns a Single Movie</td>
@@ -95,7 +95,7 @@ MOVIE REST API ENDPOINTS:
 
   <tr>
     <td>Find Actor</td>
-    <td>/Movies/[actors]</td>
+    <td>/Movies/actors/:actor</td>
     <td>GET</td>
     <td>JSON Format</td>
     <td>Returns a Single Actor</td>
@@ -103,7 +103,7 @@ MOVIE REST API ENDPOINTS:
   
   <tr>
     <td>Find Genre</td>
-    <td>/Movies/[genres]</td>
+    <td>/Movies/genres/:genre</td>
     <td>GET</td>
     <td>JSON Format</td>
     <td>Returns All Movie Genres</td>
@@ -111,7 +111,7 @@ MOVIE REST API ENDPOINTS:
   
   <tr>
     <td>Find Actor BIO</td>
-    <td>/Movies/[actors]/[id]/[bio]</td>
+    <td>/Movies/actors/bio/:bio</td>
     <td>GET</td>
     <td>JSON Format</td>
     <td>Returns data about each actors Bio <br>Data Birth Year Death year and Movies Played</td>
@@ -119,7 +119,7 @@ MOVIE REST API ENDPOINTS:
   
   <tr>
     <td>GET Movie Title:</td>
-    <td>/Movies/</td>
+      <td><code>/Movies/title/:title</code></td>
     <td>GET</td>
     <td>JSON Format</td>
     <td>Returns Each Movie Title</td>
@@ -128,7 +128,7 @@ MOVIE REST API ENDPOINTS:
 
   <tr>
     <td>Add Favorite Actor</td>
-    <td>/Movies/[favorites]/[favActors]</td>
+    <td>/Users/favorites/actors/:actor</td>
     <td>POST</td>
     <td>JSON Format</td>
     <td>Adds Users Favorite Actor to their list</td>
@@ -136,15 +136,22 @@ MOVIE REST API ENDPOINTS:
   
   <tr>
     <td>Add Favorite Movie</td>
-    <td>/Movies/[favorites]/[favMovies]</td>
+    <td>/Users/favorites/movies/:movie</td>
     <td>POST</td>
     <td>JSON Format</td>
     <td>Adds Favorite Movie to their list</td>
   </tr>
+  <tr>
+    <td>GET Favorite Movie</td>
+    <td>/Users/favorites/movies/:movie</td>
+    <td>GET</td>
+    <td>JSON Format</td>
+    <td>Get Favorite Movie from their list</td>
+  </tr>
   
   <tr>
     <td>Remove Favorite Actor By ID</td>
-    <td>/Movies/[favorites]/[favActors]/[id]</td>
+    <td>/Users/favorites/actors/:actor</td>
     <td>DELETE</td>
     <td>JSON Format</td>
     <td>Removes favorite Actor from Users list</td>
@@ -152,7 +159,7 @@ MOVIE REST API ENDPOINTS:
  
  <tr>
     <td>Delete Favorite Movie by ID</td>
-    <td>/Movies/[favorites]/[favMovies]/[id]</td>
+    <td>/user/favorites/movies/:movie</td>
     <td>DELETE</td>
     <td>JSON Format</td>
     <td>Removes favorite Movie from Users list</td>
