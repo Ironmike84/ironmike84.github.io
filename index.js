@@ -42,7 +42,7 @@ app.get('/Movies/actors/bio/:bio', (req, res) => {
 
 
 //-----------------------------------------------------------------------------------------------------// GET MOVIE TITLE
-app.get('/Movies/:title', (req, res) => { 
+app.get('/Movies/titles/:title', (req, res) => { 
   res.send('Here is the title you were Searching for!!');
 });
 
@@ -54,7 +54,6 @@ app.get('/Users/favorites/movies/:movie', (req, res) => {
 //-----------------------------------------------------------------------------------------------------// POST NEW FAV MOVIE
   app.post('/Users/favorites/movies/:movie', (req, res) => {
     let newFavMovie = req.body;
-  
     if(!newFavMovie.name) {
       const message = 'Missing "Movie Name" in request body';
       res.status(400).send(message);
@@ -73,7 +72,6 @@ app.get('/Users/favorites/actors/:actor', (req, res) => {
 //-----------------------------------------------------------------------------------------------------// POST NEW FAV ACTOR
 app.post('/Users/favorites/actors/:actor', (req, res) => {
     let newFavActor = req.body;
-  
     if(!newFavActor.name) {
       const message = 'Missing "Actor Name" in request body';
       res.status(400).send(message);
@@ -105,8 +103,6 @@ app.delete('/Users/favorites/movies/:movie', (req, res) => {
     }
   });
   
-
-
 //=================================================================================================== USER REGISTRY   
 
 //-----------------------------------------------------------------------------------------------------// CREATE NEW USER
@@ -122,10 +118,7 @@ app.post('/Users/userNames/:username', (req, res) => {
       res.status(201).send(newUsername);
       res.send('Successful registration!!!')
     }
-
   });
-
-
 //---------------------------------------------------------------------------------// Allow users to update their user information
 app.put('/Users/userNames/:username', (req, res) => {
     let newUsername = req.body;
@@ -141,26 +134,10 @@ app.put('/Users/userNames/:username', (req, res) => {
     }
     
   });
-
-
-//--------------------------------------------------------------------------------------// Delete Favorite Movie
-app.delete('/Users/favorites/movies/:movie', (req, res) => {
-    let usersName = movieObject.find((username) => { return username.id === req.params.id });
-  
-    if (usersName) {
-      usersName = movieObject.filter((username) => { return username.id !== req.params.id });
-      movieObject.pop(usersName)
-      res.status(201).send(`User '${req.params.id}' was deleted.`);
-    }
-  });
-  
-
 //-----------------------------------------------------------------------------------------------------// ERROR MESSAGE
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
   });
-
-
 //-----------------------------------------------------------------------------------------------------// PORT CALL
 app.listen(PORT, ()=>(console.log(`Listening On Port: ${PORT}`)))
