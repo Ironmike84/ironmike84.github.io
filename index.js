@@ -16,8 +16,7 @@ app.use(express.static('public'));
 app.use('/public', express.static('public'));
 
 //-------------------------------------------------------------------------------------// GET ALL Movies
-app.get('/Movies/:name', (req, res) => {
-    res.json(movieObject)
+app.get('/Movies/:movies', (req, res) => {
     res.send('Here is the Movie wou were searching for!');
   })
 
@@ -28,28 +27,28 @@ app.get('/Movies/:movie', (req, res) => {
   
 //--------------------------------------------------------------------------------------// Find Actor
 app.get('/Movies/actors/:actor', (req, res) => {
-    res.send(`Here is the Actor you were searching for!`);
+    res.send('Here is the Actor you were searching for!');
   });
 
 //--------------------------------------------------------------------------------------// Find Genre
 app.get('/Movies/genres/:genre', (req, res) => {
-      res.send(`Here is the Genre you were searching for!`);
+      res.send('Here is the Genre you were searching for!');
   });
 
 //--------------------------------------------------------------------------------------// Find Actor Details
-app.get('/Movies/:actors/bio/:name', (req, res) => {
-      res.send(`Here is the Actors Bio you were Searching for!!`);
+app.get('/Movies/actors/bio/:bio', (req, res) => {
+      res.send('Here is the Actors Bio you were Searching for!!');
   });
 
 
 //-----------------------------------------------------------------------------------------------------// GET MOVIE TITLE
 app.get('/Movies/:title', (req, res) => { 
-  res.send(`Here is the Actors Bio you were Searching for!!`);
+  res.send('Here is the title you were Searching for!!');
 });
 
 //--------------------------------------------------------------------------------------------------------// GET FAV MOVIE
 app.get('/Users/favorites/movies/:movie', (req, res) => {
-  res.send(`Here is the Actors Bio you were Searching for!!`);
+  res.send('Here is the movie you were Searching for!!');
 });
 
 //-----------------------------------------------------------------------------------------------------// POST NEW FAV MOVIE
