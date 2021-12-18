@@ -3,7 +3,7 @@
 <p>The Movie API Call creates a server Request and imports the HTTP module and returns the URL Module Index File. 
 If user adds documentation to localHost:3000/documentation the user will be handed the documentation file.</p>
 
-<h2>UPDATE: 12/14/21</h2><br>
+UPDATE: 12/14/21<br>
 <hr>
 <p>The Movie API Utilizes express in Node.js to get the documentation file for the Project directory. Further
     express.static was utilized to carry out the request. To get the documentation file from the project directory folder.
@@ -139,15 +139,9 @@ MOVIE REST API ENDPOINTS:
 
   
   <tr>
-    <td>Update User</td>
+    <td>Delete User</td>
     <td><code>/Users/userNames/:username</code></td>
-    <td><code>PUT</code></td>
+    <td><code>Delete</code></td>
     <td>JSON Format</td>
     <td>Creates New User</td>
   </tr>
-
-  </table>
-
-
-
-MJG 2021
