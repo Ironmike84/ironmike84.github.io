@@ -20,12 +20,11 @@ UPDATE: 12/14/21<br>
     <li> Users Can Delete Movies Also from their list.</li>
     <li> Users Can Update Their personal Information</li>
     <li>Users Can De-Register their Account</li>
- </ul>
+</ul>
 <hr>
 <br>
 MOVIE REST API ENDPOINTS:
 <hr>
-
 <table style="text-align:center">
   <tr>
     <th>Request:</th>
@@ -36,63 +35,57 @@ MOVIE REST API ENDPOINTS:
   </tr>
   <tr>
     <td>All Movies</td>
-    <td>/Movies</td>
-    <td>GET</td>
+    <td><code>/Movies</code></td>
+    <td><code>GET</code></td>
     <td>JSON Format</td>
     <td>Gets All Movies</td>
   </tr>
-  
   <tr>
     <td>One Movie</td>
-    <td>/Movies</td>
-    <td>GET</td>
+    <td><code>/Movies</code></td>
+    <td><code>GET</code></td>
     <td>JSON Format</td>
     <td>Returns a Single Movie</td>
-   </tr>
-
+  </tr>
   <tr>
     <td>Find Genre</td>
-    <td>/Movies/Genres</td>
-    <td>GET</td>
+    <td><code>/Movies/Genres</code></td>
+    <td><code>GET</code></td>
     <td>JSON Format</td>
     <td>Returns All Movie Genres</td>
   </tr>
-
   <tr>
     <td>Add Favorite Movie</td>
-    <td>/movies/favMovies/:Title</td>
-    <td>POST</td>
+    <td><code>/movies/favMovies/:Title</code></td>
+    <td><code>POST</code></td>
     <td>JSON Format</td>
     <td>Adds Favorite Movie to their list</td>
   </tr>
-
- <tr>
+  <tr>
     <td>Delete Favorite Movie</td>
-    <td>/movies/remove/:Title</td>
-    <td>DELETE</td>
+    <td><code>/movies/remove/:Title</code></td>
+    <td><code>DELETE</code></td>
     <td>JSON Format</td>
     <td>Removes Favorite Movie from Users list</td>
   </tr>
   <tr>
     <td>Add User</td>
-    <td>/users/NewUser/:UserName</td>
-    <td>POST</td>
+    <td><code>/users/NewUser/:UserName</code></td>
+    <td><code>POST</code></td>
     <td>JSON Format</td>
     <td>Creates New User</td>
   </tr>
-
   <tr>
     <td>Update User</td>
-    <td>/users/UpdateUser/:Username</td>
-    <td>PUT</td>
+    <td><code>/users/UpdateUser/:Username</code></td>
+    <td><code>PUT</code></td>
     <td>JSON Format</td>
     <td>Updates User Information</td>
   </tr>
-
   <tr>
     <td>Delete User</td>
-    <td>/users/remove/:UserName</td>
-    <td>DELETE</td>
+    <td><code>/users/remove/:UserName</code></td>
+    <td><code>DELETE</code></td>
     <td>JSON Format</td>
     <td>Removes User from Users list</td>
   </tr>
