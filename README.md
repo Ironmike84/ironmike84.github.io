@@ -1,4 +1,4 @@
-<h1>MOVIE REST API</h1>
+    <h1>MOVIE REST API</h1>
 <hr>
 <p>The Movie API Call creates a server Request and imports the HTTP module and returns the URL Module Index File. 
 If user adds documentation to localHost:3000/documentation the user will be handed the documentation file.</p>
@@ -20,7 +20,7 @@ UPDATE: 12/14/21<br>
     <li> Users Can Delete Movies Also from their list.</li>
     <li> Users Can Update Their personal Information</li>
     <li>Users Can De-Register their Account</li>
-</ul>
+ </ul>
 <hr>
 <br>
 MOVIE REST API ENDPOINTS:
@@ -36,112 +36,68 @@ MOVIE REST API ENDPOINTS:
   </tr>
   <tr>
     <td>All Movies</td>
-    <td><code>/Movies/:movies</code></td>
-    <td><code>GET</code></td>
+    <td>/Movies</td>
+    <td>GET</td>
     <td>JSON Format</td>
     <td>Gets All Movies</td>
   </tr>
   
   <tr>
     <td>One Movie</td>
-    <td><code>/Movies/:movies</code></td>
-    <td><code>GET</code></td>
+    <td>/Movies</td>
+    <td>GET</td>
     <td>JSON Format</td>
     <td>Returns a Single Movie</td>
-  </tr>
+   </tr>
 
   <tr>
-    <td>Find Actor</td>
-    <td><code>/Movies/actors/:actor</code></td>
-    <td><code>GET</code></td>
-    <td>JSON Format</td>
-    <td>Returns a Single Actor</td>
-  </tr>
-  
-  <tr>
     <td>Find Genre</td>
-    <td><code>/Movies/genres/:genre</code></td>
-    <td><code>GET</code></td>
+    <td>/Movies/Genres</td>
+    <td>GET</td>
     <td>JSON Format</td>
     <td>Returns All Movie Genres</td>
   </tr>
-  
-  <tr>
-    <td>Find Actor BIO</td>
-    <td><code>/Movies/actors/bio/:bio</code></td>
-    <td><code>GET</code></td>
-    <td>JSON Format</td>
-    <td>Returns data about each actors Bio <br>Data Birth Year Death year and Movies Played</td>
-  </tr>
-  
-  <tr>
-    <td>GET Movie Title:</td>
-      <td><code>/Movies/title/:title</code></td>
-      <td><code>GET</code></td>
-    <td>JSON Format</td>
-    <td>Returns Each Movie Title</td>
-  </tr>
-  
 
   <tr>
-    <td>Add Favorite Actor</td>
-    <td><code>/Users/favorites/actors/:actor</code></td>
-    <td><code>POST</code></td>
-    <td>JSON Format</td>
-    <td>Adds Users Favorite Actor to their list</td>
-  </tr>
-  
-  <tr>
     <td>Add Favorite Movie</td>
-    <td><code>/Users/favorites/movies/:movie</code></td>
-    <td><code>POST</code></td>
+    <td>/movies/favMovies/:Title</td>
+    <td>POST</td>
     <td>JSON Format</td>
     <td>Adds Favorite Movie to their list</td>
   </tr>
-  <tr>
-    <td>GET Favorite Movie</td>
-    <td><code>/Users/favorites/movies/:movie</code></td>
-    <td><code>GET</code></td>
-    <td>JSON Format</td>
-    <td>Get Favorite Movie from their list</td>
-  </tr>
-  
-  <tr>
-    <td>Remove Favorite Actor By ID</td>
-    <td><code>/Users/favorites/actors/:actor</code></td>
-    <td><code>DELETE</code></td>
-    <td>JSON Format</td>
-    <td>Removes favorite Actor from Users list</td>
-  </tr>
-<tr>
-    <td>Delete Favorite Movie by ID</td>
-    <td><code>/Users/favorites/movies/:movie</code></td>
-    <td><code>DELETE</code></td>
-    <td>JSON Format</td>
-    <td>Removes favorite Movie from Users list</td>
-  </tr>
 
+ <tr>
+    <td>Delete Favorite Movie</td>
+    <td>/movies/remove/:Title</td>
+    <td>DELETE</td>
+    <td>JSON Format</td>
+    <td>Removes Favorite Movie from Users list</td>
+  </tr>
   <tr>
-    <td>Add NEW User</td>
-    <td><code>/Users/userNames/:username</code></td>
-    <td><code>POST</code></td>
+    <td>Add User</td>
+    <td>/users/NewUser/:UserName</td>
+    <td>POST</td>
     <td>JSON Format</td>
     <td>Creates New User</td>
   </tr>
 
   <tr>
     <td>Update User</td>
-    <td><code>/Users/userNames/:username</code></td>
-    <td><code>PUT</code></td>
+    <td>/users/UpdateUser/:Username</td>
+    <td>PUT</td>
     <td>JSON Format</td>
-    <td>Creates New User</td>
+    <td>Updates User Information</td>
   </tr>
 
-  
   <tr>
     <td>Delete User</td>
-    <td><code>/Users/userNames/:username</code></td>
-    <td><code>Delete</code></td>
+    <td>/users/remove/:UserName</td>
+    <td>DELETE</td>
     <td>JSON Format</td>
-    <td>Creates New User</td>
+    <td>Removes User from Users list</td>
   </tr>
+  </table>
+
+
+
+MJG 2021
