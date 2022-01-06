@@ -1,0 +1,266 @@
+[
+  {
+    "_id": {
+      "ObjectId": 3003
+    },
+    "UserName": "FrankWilliams",
+    "Password": "hisPassword",
+    "Email": "frankWilliams@gmail.com",
+    "Birthday": "1974-06-14T00:00:00.000Z",
+    "FavoriteMovies": [
+      {
+        "_id": {
+          "ObjectId": 2001
+        },
+        "Title": "Hacksaw Ridge",
+        "Genre": "Action"
+      },
+      {
+        "_id": {
+          "ObjectId": 2002
+        },
+        "Title": "Iron Man",
+        "Genre": "Action"
+      },
+      {
+        "_id": {
+          "ObjectId": 2004
+        },
+        "Title": "Braveheart",
+        "Genre": "Drama"
+      },
+      {
+        "_id": {
+          "ObjectId": 2008
+        },
+        "Title": "SpiderMan",
+        "Genre": "Action"
+      },
+      {
+        "_id": {
+          "ObjectId": 2007
+        },
+        "Title": "Guardians of the Galaxy",
+        "Genre": "Action"
+      }
+    ],
+    "ImagePath": "oldFrank.png"
+  },
+  {
+    "_id": {
+      "ObjectId": 3004
+    },
+    "UserName": "JohnHammer",
+    "Password": "ilikehammers",
+    "Email": "hammerTime@gmail.com",
+    "Birthday": "1992-09-12T00:00:00.000Z",
+    "FavoriteMovies": [
+      {
+        "_id": {
+          "ObjectId": 2001
+        },
+        "Title": "Hacksaw Ridge",
+        "Genre": "Action"
+      },
+      {
+        "_id": {
+          "ObjectId": 2002
+        },
+        "Title": "Iron Man",
+        "Genre": "Action"
+      },
+      {
+        "_id": {
+          "ObjectId": 2004
+        },
+        "Title": "Braveheart",
+        "Genre": "Drama"
+      },
+      {
+        "_id": {
+          "ObjectId": 2008
+        },
+        "Title": "SpiderMan",
+        "Genre": "Action"
+      },
+      {
+        "_id": {
+          "ObjectId": 2007
+        },
+        "Title": "Guardians of the Galaxy",
+        "Genre": "Action"
+      }
+    ],
+    "ImagePath": "HammerTime.png"
+  },
+  {
+    "_id": {
+      "ObjectId": 3005
+    },
+    "UserName": "MonicaAdams",
+    "Password": "ilovecats",
+    "Email": "monicaAdams@gmail.com",
+    "Birthday": "1985-05-02T00:00:00.000Z",
+    "FavoriteMovies": [
+      {
+        "_id": {
+          "ObjectId": 2001
+        },
+        "Title": "Hacksaw Ridge",
+        "Genre": "Action"
+      },
+      {
+        "_id": {
+          "ObjectId": 2002
+        },
+        "Title": "Iron Man",
+        "Genre": "Action"
+      },
+      {
+        "_id": {
+          "ObjectId": 2004
+        },
+        "Title": "Braveheart",
+        "Genre": "Drama"
+      },
+      {
+        "_id": {
+          "ObjectId": 2008
+        },
+        "Title": "SpiderMan",
+        "Genre": "Action"
+      },
+      {
+        "_id": {
+          "ObjectId": 2007
+        },
+        "Title": "Guardians of the Galaxy",
+        "Genre": "Action"
+      }
+    ],
+    "ImagePath": "MonicaAdams.png"
+  },
+  {
+    "_id": 3008,
+    "FavoriteMovies": [],
+    "__v": 0
+  },
+  {
+    "_id": {
+      "ObjectId": 3001
+    },
+    "UserName": "MikeGross",
+    "Password": "myPassword",
+    "Email": "mikegross@gmail.com",
+    "Birthday": "1984-11-08T00:00:00.000Z",
+    "FavoriteMovies": [
+      {
+        "_id": {
+          "ObjectId": 2001
+        },
+        "Title": "Hacksaw Ridge",
+        "Genre": "Action"
+      },
+      {
+        "_id": {
+          "ObjectId": 2005
+        },
+        "Title": "Toy Story",
+        "Genre": "Animation"
+      },
+      {
+        "_id": {
+          "ObjectId": 2003
+        },
+        "Title": "Passion of the Christ",
+        "Genre": "Drama"
+      },
+      {
+        "_id": {
+          "ObjectId": 2009
+        },
+        "Title": "The Notebook",
+        "Genre": "Romance"
+      },
+      {
+        "_id": {
+          "ObjectId": 2002
+        },
+        "Title": "Iron Man",
+        "Genre": "Action"
+      }
+    ],
+    "ImagePath": "MikeGross.png"
+  },
+  {
+    "_id": {
+      "ObjectId": 3002
+    },
+    "UserName": "JamieJames",
+    "Password": "herPassword",
+    "Email": "jamieJames96@gmail.com",
+    "Birthday": "1996-05-21T00:00:00.000Z",
+    "FavoriteMovies": [
+      {
+        "_id": {
+          "ObjectId": 2006
+        },
+        "Title": "No Strings Attached",
+        "Genre": "Romance"
+      },
+      {
+        "_id": {
+          "ObjectId": 2005
+        },
+        "Title": "Toy Story",
+        "Genre": "Animation"
+      },
+      {
+        "_id": {
+          "ObjectId": 2003
+        },
+        "Title": "Passion of the Christ",
+        "Genre": "Drama"
+      },
+      {
+        "_id": {
+          "ObjectId": 2009
+        },
+        "Title": "The Notebook",
+        "Genre": "Romance"
+      },
+      {
+        "_id": {
+          "ObjectId": 2007
+        },
+        "Title": "Guardians of the Galaxy",
+        "Genre": "Action"
+      }
+    ],
+    "ImagePath": "JamieJames.png"
+  },
+  {
+    "_id": {
+      "ObjectId": 3006
+    },
+    "Password": "iamsmart",
+    "Email": "JamesSmart@gmail.com",
+    "Birthday": "1992-04-07T04:00:00.000Z",
+    "FavoriteMovies": [
+      null
+    ],
+    "ImagePath": "JamesSmart",
+    "__v": 0
+  },
+  {
+    "_id": 3007,
+    "Password": "iamnotsmart",
+    "Email": "JamesNotSmart@gmail.com",
+    "Birthday": "1992-12-07T05:00:00.000Z",
+    "FavoriteMovies": [
+      null
+    ],
+    "ImagePath": "JamesSmart",
+    "__v": 0
+  }
+]
