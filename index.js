@@ -1,9 +1,16 @@
+//===============================================// INDEX.js \\======================================================
+//===========================================// MuVies MOVIE API \\==================================================
+//===================================================================================================================
+
+//-------------------------------------------------------------------------------------------------// IMPORTS 
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/MuVies', {useNewUrlParser: true});
 const PORT = 8080
 const morgan = require('morgan');
+const passport = require('passport');
+
 
 // =================================================================================================>// MODELS //
 const Models = require('./models.js');
@@ -16,6 +23,8 @@ const favMovies = Models.favMovies;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+let auth = require('./auth')(app);
+require('./passport');
 //-----------------------------------------------------------------------------------------------------// USE MORGAN (Not sure WHY?)
 app.use(morgan('public'));
 
@@ -25,7 +34,7 @@ app.use(express.static('public'));
 app.use('/public', express.static('public'));
 
 //--------------------------------------------------------------------------------------------------// GET ALL Movies
-app.get('/Movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }),(req, res) => {
   Movies.find()
     .then((Movies) => {
       res.status(201).json(Movies);
@@ -36,7 +45,7 @@ app.get('/Movies', (req, res) => {
     });
 })
 //---------------------------------------------------------------------------------------------// GET Movie By Title
-app.get('/Movies/:Title', (req, res) => {
+app.get('/Movies/:Title',passport.authenticate('jwt', { session: false }),(req, res) => {
 
     Movies.findOne({ Title: req.params.Title })
     .then((Movies) => {
@@ -49,7 +58,7 @@ app.get('/Movies/:Title', (req, res) => {
   });
 
   //--------------------------------------------------------------------------------------// GET Movie by Genre Name
-app.get('/Movies/Genre/:Name', (req, res) => {
+app.get('/Movies/Genre/:Name',passport.authenticate('jwt', { session: false }),(req, res) => {
 
   Movies.findOne({ 'Genre.Name': req.params.Name })
   .then((Movies) => {
@@ -62,7 +71,7 @@ app.get('/Movies/Genre/:Name', (req, res) => {
 });
 
   //------------------------------------------------------------------------------------// GET Movie by Director Name
-  app.get('/Movies/Director/:Name', (req, res) => {
+  app.get('/Movies/Director/:Name',passport.authenticate('jwt', { session: false }),(req, res) => {
 
     Movies.findOne({ 'Director.Name': req.params.Name })
     .then((Movies) => {
@@ -75,7 +84,7 @@ app.get('/Movies/Genre/:Name', (req, res) => {
   });
 
 //--------------------------------------------------------------------------------------------------// GET All Genres
-app.get('/genres', (req, res) => {
+app.get('/genres', passport.authenticate('jwt', { session: false }),(req, res) => {
   genres.find()
   .then((genres) => {
     res.status(201).json(genres);
@@ -87,7 +96,7 @@ app.get('/genres', (req, res) => {
 });
 
 //----------------------------------------------------------------------------------------------------// GET One Genre
-app.get('/genres/:Name', (req, res) => {
+app.get('/genres/:Name',passport.authenticate('jwt', { session: false }),(req, res) => {
   genres.findOne({ Name: req.params.Name })
   .then((genres) => {
     res.json(genres);
@@ -98,7 +107,7 @@ app.get('/genres/:Name', (req, res) => {
   });
 });
 //----------------------------------------------------------------------------------------------// GET All Directors
-app.get('/directors', (req, res) => {
+app.get('/directors',passport.authenticate('jwt', { session: false }),(req, res) => {
   Directors.find()
     .then((Directors) => {
       res.status(201).json(Directors);
@@ -109,7 +118,7 @@ app.get('/directors', (req, res) => {
     });
 });
 //-------------------------------------------------------------------------------------------------// GET Director
-app.get('/directors/:Name', (req, res) => {
+app.get('/directors/:Name',passport.authenticate('jwt', { session: false }), (req, res) => {
     Directors.findOne({ Name: req.params.Name })
     .then((Directors) => {
       res.json(Directors);
@@ -120,7 +129,7 @@ app.get('/directors/:Name', (req, res) => {
     });
 });
 //----------------------------------------------------------------------------------------------------// GET FAV MOVIE
-app.get('/favMovies/:UserName', (req, res) => {
+app.get('/favMovies/:UserName',passport.authenticate('jwt', { session: false }), (req, res) => {
   favMovies.findOne({'_id.UserName': req.params.UserName })
   .then((favMovie) => {
     res.json(favMovie);
@@ -133,7 +142,7 @@ app.get('/favMovies/:UserName', (req, res) => {
 });
 
 //--------------------------------------------------------------------------------------------------------// GET FAV MOVIE
-app.get('/favMovies', (req, res) => {
+app.get('/favMovies',passport.authenticate('jwt', { session: false }), (req, res) => {
   favMovies.find()
   .then((favMovies) => {
     res.json(favMovies);
@@ -146,7 +155,7 @@ app.get('/favMovies', (req, res) => {
 
 
 //---------------------------------------------------------------------------------------------// POST NEW FAV MOVIE
-app.post('/favMovies/newFav/:UserName', (req, res) => {
+app.post('/favMovies/newFav/:UserName',passport.authenticate('jwt', { session: false }), (req, res) => {
   favMovies.findOneAndUpdate({ '_id.UserName': req.params.UserName }, {
     $push: {"FavoriteMovies":{}}
 },
@@ -161,7 +170,7 @@ app.post('/favMovies/newFav/:UserName', (req, res) => {
   });
 });
 //------------------------------------------------------------------------------------------// DELETE Favorite Movie
-app.delete('/favMovies/:UserName/delete/:id', (req, res) => {
+app.delete('/favMovies/:UserName/delete/:id',passport.authenticate('jwt', { session: false }), (req, res) => {
   favMovies.deleteOne({'_id.UserName': req.params.UserName, _id: req.params.id })
     .then((favMovie) => {
       if (!favMovie) {
@@ -180,7 +189,7 @@ app.delete('/favMovies/:UserName/delete/:id', (req, res) => {
 
 
 //--------------------------------------------------------------------------------------------// GET Users By Username
-app.get('/users/:UserName', (req, res) => {
+app.get('/users/:UserName',passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOne({ UserName: req.params.UserName })
     .then((Users) => {
       res.json(Users);
@@ -191,7 +200,7 @@ app.get('/users/:UserName', (req, res) => {
     });
 });
 //--------------------------------------------------------------------------------------------------// GET All Users
-app.get('/users', (req, res) => {
+app.get('/users',passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.find()
     .then((Users) => {
       res.status(201).json(Users);
@@ -231,7 +240,7 @@ app.post('/users/NewUser/:UserName', (req, res) => {
     });
 });
 //-----------------------------------------------------------------------------------------------// UPDATE USER Info
-app.put('/users/UpdateUser/:UserName', (req, res) => {
+app.put('/users/UpdateUser/:UserName', passport.authenticate('jwt', { session: false }), (req, res) => {
     Users.findOneAndUpdate({ UserName: req.params.UserName }, 
       { $set:
       { UserName: req.body.UserName,
@@ -252,7 +261,7 @@ app.put('/users/UpdateUser/:UserName', (req, res) => {
     });
   });
 //----------------------------------------------------------------------------------------------------// DELETE User
-app.delete('/users/remove/:UserName', (req, res) => {
+app.delete('/users/remove/:UserName', passport.authenticate('jwt', { session: false }),(req, res) => {
     Users.deleteOne({ "_id.UserName": req.params.UserName })
       .then((User) => {
         if (!User) {
