@@ -55,8 +55,8 @@ let genreSchema = mongoose.Schema({
 });
 
 let favMoviesSchema = mongoose.Schema({
-  _id: {Object,
-  UserName: String},
+  _id: {type:Object},
+  UserName: String,
   FavoriteMovies: [{_id:Object}]
 })
 
