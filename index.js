@@ -1,11 +1,8 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/MuVies', {
-    useNewUrlParser: true,
-});
+mongoose.connect('mongodb://127.0.0.1:27017/MuVies', {useNewUrlParser: true});
 const PORT = 8080
-
 const morgan = require('morgan');
 
 // =================================================================================================>// MODELS //
@@ -27,7 +24,7 @@ app.use(express.static('public'));
 
 app.use('/public', express.static('public'));
 
-//-------------------------------------------------------------------------------------// GET ALL Movies
+//--------------------------------------------------------------------------------------------------// GET ALL Movies
 app.get('/Movies', (req, res) => {
   Movies.find()
     .then((Movies) => {
@@ -38,7 +35,7 @@ app.get('/Movies', (req, res) => {
       res.status(500).send('Error: ' + err);
     });
 })
-//--------------------------------------------------------------------------------------// Single Movie
+//---------------------------------------------------------------------------------------------// GET Movie By Title
 app.get('/Movies/:Title', (req, res) => {
 
     Movies.findOne({ Title: req.params.Title })
@@ -51,7 +48,7 @@ app.get('/Movies/:Title', (req, res) => {
     });
   });
 
-  //--------------------------------------------------------------------------------------// Movie by Genre
+  //--------------------------------------------------------------------------------------// GET Movie by Genre Name
 app.get('/Movies/Genre/:Name', (req, res) => {
 
   Movies.findOne({ 'Genre.Name': req.params.Name })
@@ -64,7 +61,7 @@ app.get('/Movies/Genre/:Name', (req, res) => {
   });
 });
 
-  //--------------------------------------------------------------------------------------// Movie by Genre
+  //------------------------------------------------------------------------------------// GET Movie by Director Name
   app.get('/Movies/Director/:Name', (req, res) => {
 
     Movies.findOne({ 'Director.Name': req.params.Name })
@@ -77,7 +74,7 @@ app.get('/Movies/Genre/:Name', (req, res) => {
     });
   });
 
-//--------------------------------------------------------------------------------------// Find Genre
+//--------------------------------------------------------------------------------------------------// GET All Genres
 app.get('/genres', (req, res) => {
   genres.find()
   .then((genres) => {
@@ -89,7 +86,7 @@ app.get('/genres', (req, res) => {
   });
 });
 
-//--------------------------------------------------------------------------------------// Find Director
+//----------------------------------------------------------------------------------------------------// GET One Genre
 app.get('/genres/:Name', (req, res) => {
   genres.findOne({ Name: req.params.Name })
   .then((genres) => {
@@ -100,7 +97,7 @@ app.get('/genres/:Name', (req, res) => {
     res.status(500).send('Error: ' + err);
   });
 });
-//--------------------------------------------------------------------------------------// Find Director
+//----------------------------------------------------------------------------------------------// GET All Directors
 app.get('/directors', (req, res) => {
   Directors.find()
     .then((Directors) => {
@@ -111,7 +108,7 @@ app.get('/directors', (req, res) => {
       res.status(500).send('Error: ' + err);
     });
 });
-//--------------------------------------------------------------------------------------// Find Director
+//-------------------------------------------------------------------------------------------------// GET Director
 app.get('/directors/:Name', (req, res) => {
     Directors.findOne({ Name: req.params.Name })
     .then((Directors) => {
@@ -122,7 +119,7 @@ app.get('/directors/:Name', (req, res) => {
       res.status(500).send('Error: ' + err);
     });
 });
-//--------------------------------------------------------------------------------------------------------// GET FAV MOVIE
+//----------------------------------------------------------------------------------------------------// GET FAV MOVIE
 app.get('/favMovies/:UserName', (req, res) => {
   favMovies.findOne({'_id.UserName': req.params.UserName })
   .then((favMovie) => {
@@ -164,13 +161,13 @@ app.post('/favMovies/newFav/:UserName', (req, res) => {
   });
 });
 //------------------------------------------------------------------------------------------// DELETE Favorite Movie
-app.delete('/users/delete/:UserName', (req, res) => {
-  Users.findOneAndRemove({ UserName: req.params.UserName })
-    .then((User) => {
-      if (!User) {
-        res.status(400).send(req.params.Username + ' was not found');
+app.delete('/favMovies/:UserName/delete/:id', (req, res) => {
+  favMovies.deleteOne({'_id.UserName': req.params.UserName, _id: req.params.id })
+    .then((favMovie) => {
+      if (!favMovie) {
+        res.status(400).send('ID: ' + req.params.id + ' was not found');
       } else {
-        res.status(200).send(req.params.Username + ' was deleted.');
+        res.status(200).send('ID: ' + req.params.id + ' was deleted.');
       }
     })
     .catch((err) => {
@@ -179,6 +176,10 @@ app.delete('/users/delete/:UserName', (req, res) => {
     });
 });
 //===================================================================================================// USER REGISTRY
+//===================================================================================================//
+
+
+//--------------------------------------------------------------------------------------------// GET Users By Username
 app.get('/users/:UserName', (req, res) => {
   Users.findOne({ UserName: req.params.UserName })
     .then((Users) => {
@@ -229,7 +230,7 @@ app.post('/users/NewUser/:UserName', (req, res) => {
       res.status(500).send('Error: ' + error);
     });
 });
-//---------------------------------------------------------------------------------// Allow users to update their user information
+//-----------------------------------------------------------------------------------------------// UPDATE USER Info
 app.put('/users/UpdateUser/:UserName', (req, res) => {
     Users.findOneAndUpdate({ UserName: req.params.UserName }, 
       { $set:
@@ -250,7 +251,7 @@ app.put('/users/UpdateUser/:UserName', (req, res) => {
       }
     });
   });
-  //---------------------------------------------------------------------------------// Allow users to update their user information
+//----------------------------------------------------------------------------------------------------// DELETE User
 app.delete('/users/remove/:UserName', (req, res) => {
     Users.deleteOne({ "_id.UserName": req.params.UserName })
       .then((User) => {
@@ -266,7 +267,7 @@ app.delete('/users/remove/:UserName', (req, res) => {
       });
   });
 
-  //-----------------------------------------------------------------------------------------------------// ERROR MESSAGE
+  //-------------------------------------------------------------------------------------------------// ERROR MESSAGE
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Oh No!!! Something broke!');
