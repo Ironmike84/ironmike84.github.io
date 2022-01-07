@@ -113,7 +113,7 @@ app.get('/directors', (req, res) => {
 });
 //--------------------------------------------------------------------------------------// Find Director
 app.get('/directors/:Name', (req, res) => {
-   Directors.findOne({ Name: req.params.Name })
+    Directors.findOne({ Name: req.params.Name })
     .then((Directors) => {
       res.json(Directors);
     })
@@ -125,8 +125,8 @@ app.get('/directors/:Name', (req, res) => {
 //--------------------------------------------------------------------------------------------------------// GET FAV MOVIE
 app.get('/favMovies/:UserName', (req, res) => {
   favMovies.findOne({'_id.UserName': req.params.UserName })
-  .then((favMovies) => {
-    res.json(favMovies);
+  .then((favMovie) => {
+    res.json(favMovie);
   })
   .catch((err) => {
     console.error(err);
@@ -148,10 +148,10 @@ app.get('/favMovies', (req, res) => {
 });
 
 
-//-----------------------------------------------------------------------------------------------------// POST NEW FAV MOVIE
-app.post('/users/favMovies/newFav/:UserName', (req, res) => {
-  Users.findOneAndUpdate({ Username: req.params.Username }, {
-    $push: { FavoriteMovies: [{_id: Object},{Title:String, Genre:String}] }
+//---------------------------------------------------------------------------------------------// POST NEW FAV MOVIE
+app.post('/favMovies/newFav/:UserName', (req, res) => {
+  favMovies.findOneAndUpdate({ '_id.UserName': req.params.UserName }, {
+    $push: {"FavoriteMovies":{}}
 },
    { new: true }, // This line makes sure that the updated document is returned
   (err, updatedUser) => {
@@ -163,14 +163,11 @@ app.post('/users/favMovies/newFav/:UserName', (req, res) => {
     }
   });
 });
-
-
-
-//--------------------------------------------------------------------------------------// Delete Favorite Movie
+//------------------------------------------------------------------------------------------// DELETE Favorite Movie
 app.delete('/users/delete/:UserName', (req, res) => {
   Users.findOneAndRemove({ UserName: req.params.UserName })
-    .then((Users) => {
-      if (!Users) {
+    .then((User) => {
+      if (!User) {
         res.status(400).send(req.params.Username + ' was not found');
       } else {
         res.status(200).send(req.params.Username + ' was deleted.');
@@ -192,7 +189,7 @@ app.get('/users/:UserName', (req, res) => {
       res.status(500).send('Error: ' + err);
     });
 });
-//--------------------------------------------------------------------------------------------------// Get All Users
+//--------------------------------------------------------------------------------------------------// GET All Users
 app.get('/users', (req, res) => {
   Users.find()
     .then((Users) => {
@@ -203,21 +200,24 @@ app.get('/users', (req, res) => {
       res.status(500).send('Error: ' + err);
     });
 });
-//-----------------------------------------------------------------------------------------------------// CREATE NEW USER
+//------------------------------------------------------------------------------------------------// CREATE NEW USER
 app.post('/users/NewUser/:UserName', (req, res) => {
   Users.findOne({ UserName: req.body.UserName })
-    .then((Users) => {
-      if (!Users) {
+    .then((User) => {
+      if (!User) {
         return res.status(400).send(req.body.UserName + 'already exists');
       } else {
         Users
-          .create({
-            UserName: req.body.UserName,
-            Password: req.body.Password,
-            Email: req.body.Email,
-            Birthday: req.body.Birthday
+          .create(
+            { _id: req.body._id,
+              UserName: req.body.UserName,
+              Password: req.body.Password,
+              Email: req.body.Email,
+              Birthday: req.body.Birthday,
+            FavoriteMovies:[req.body.favMovies],
+            ImagePath: req.body.ImagePath,
           })
-          .then((Users) =>{res.status(201).json(Users) })
+          .then((User) =>{res.status(201).json(User) })
         .catch((error) => {
           console.error(error);
           res.status(500).send('Error: ' + error);
@@ -230,17 +230,16 @@ app.post('/users/NewUser/:UserName', (req, res) => {
     });
 });
 //---------------------------------------------------------------------------------// Allow users to update their user information
-app.put('/users/UpdateUser/:Username', (req, res) => {
-    Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
-      { _id: req.body._id,
-        Username: req.body.Username,
+app.put('/users/UpdateUser/:UserName', (req, res) => {
+    Users.findOneAndUpdate({ UserName: req.params.UserName }, 
+      { $set:
+      { UserName: req.body.UserName,
         Password: req.body.Password,
         Email: req.body.Email,
-        Birthday: req.body.Birthday
-      },
-      FavoriteMovies:[req.body.favMovies],
+        Birthday: req.body.Birthday,
+        FavoriteMovies:[req.body.favMovies],
       ImagePath: req.body.ImagePath
-    },
+    }},
     { new: true }, // This line makes sure that the updated document is returned
     (err, updatedUser) => {
       if(err) {
@@ -253,9 +252,9 @@ app.put('/users/UpdateUser/:Username', (req, res) => {
   });
   //---------------------------------------------------------------------------------// Allow users to update their user information
 app.delete('/users/remove/:UserName', (req, res) => {
-    Users.findOneAndRemove({ Username: req.params.UserName })
-      .then((Users) => {
-        if (!Users) {
+    Users.deleteOne({ "_id.UserName": req.params.UserName })
+      .then((User) => {
+        if (!User) {
           res.status(400).send(req.params.UserName + ' was not found');
         } else {
           res.status(200).send(req.params.UserName + ' was deleted.');
@@ -270,7 +269,7 @@ app.delete('/users/remove/:UserName', (req, res) => {
   //-----------------------------------------------------------------------------------------------------// ERROR MESSAGE
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).send('Something broke!');
+    res.status(500).send('Oh No!!! Something broke!');
   });
 //-----------------------------------------------------------------------------------------------------// PORT CALL
 app.listen(PORT, ()=>(console.log(`Listening On Port: ${PORT}`)));
