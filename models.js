@@ -23,7 +23,7 @@ let movieSchema = mongoose.Schema({
 });
 
 
-let userSchema = mongoose.Schema({
+let usersSchema = mongoose.Schema({
     _id: {type: Object},
       UserName: String,
       Password: String,
@@ -62,13 +62,13 @@ let favMoviesSchema = mongoose.Schema({
 
 
   let Movie = mongoose.model('Movie', movieSchema);
-  let Users = mongoose.model('Users', userSchema);
+  let users = mongoose.model('users', usersSchema);
   let Directors = mongoose.model('Directors', directorSchema);
   let genres = mongoose.model('genres', genreSchema);
   let favMovies = mongoose.model('favMovies', favMoviesSchema);
 
   module.exports.Movie = Movie;
-  module.exports.Users = Users;
+  module.exports.users = users;
   module.exports.Directors = Directors;
   module.exports.genres = genres;
   module.exports.favMovies = favMovies;
