@@ -1,13 +1,19 @@
+
+//================================================// PASSPORT \\===========================================================
+//=========================================================================================================================
+
+//----------------------------------------------------------------------------------------------------// IMPORTS Require
 const passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
   Models = require('./models.js'),
   passportJWT = require('passport-jwt');
 
+//-----------------------------------------------------------------------------------------------------//MODELS Import
 let Users = Models.users,
   JWTStrategy = passportJWT.Strategy,
   ExtractJWT = passportJWT.ExtractJwt;
-
-passport.use(new LocalStrategy({
+//----------------------------------------------------------------------------------------------------// LOCAL STRATEGY
+  passport.use(new LocalStrategy({
   usernameField: 'UserName',
   passwordField: 'Password'
 }, (UserName, Password, callback) => {
@@ -19,15 +25,15 @@ passport.use(new LocalStrategy({
     }
 
     if (!user) {
-      console.log('incorrect username');
-      return callback(null, false, {message: 'Incorrect username or password.'});
+      console.log('Incorrect Username');
+      return callback(null, false, {message: 'Incorrect Username or Password.'});
     }
 
-    console.log('finished');
+    console.log('Logged In...');
     return callback(null, user);
   });
 }));
-
+//----------------------------------------------------------------------------------------------------// USE STRATEGY
 passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
   secretOrKey: 'your_jwt_secret'
