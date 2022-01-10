@@ -4,7 +4,7 @@
 //------------------------------------------------------------------------------// IMPORTS Require
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/MuVies', { autoIndex: false });
-
+const bcrypt = require('bcrypt');
 //------------------------------------------------------------------------------// MOVIE MODEL SCHEMA
 let movieSchema = mongoose.Schema({
         _id: {type: Number, required: false},
@@ -28,16 +28,24 @@ let movieSchema = mongoose.Schema({
         Featured: Boolean
 });
 //------------------------------------------------------------------------------// USER MODEL SCHEMA
-let usersSchema = mongoose.Schema({
-    _id: {type: Object},
-      UserName: String,
-      Password: String,
-      Email: String,
-      Birthday: Date, 
-    FavoriteMovies:[{type: Object }],
 
-    ImagePath: String
+let usersSchema = mongoose.Schema({
+  _id: {type: Object},
+  UserName: {type: String, required: true},
+  Password: {type: String, required: true},
+  Email: {type: String, required: true},
+  Birthday: Date,
+  FavoriteMovies:[{type: Object }],
+  ImagePath: String
 });
+
+usersSchema.statics.hashPassword = (password) => {
+  return bcrypt.hashSync(password, 10);
+};
+
+usersSchema.methods.validatePassword = function(password) {
+  return bcrypt.compareSync(password, this.Password);
+};
 //------------------------------------------------------------------------------// DIRECTOR MODEL SCHEMA
 let directorSchema = mongoose.Schema({
   _id: {type: Object},
