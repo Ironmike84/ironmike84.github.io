@@ -9,28 +9,33 @@ const passport = require('passport'),
   passportJWT = require('passport-jwt');
 
 //-----------------------------------------------------------------------------------------------------//MODELS Import
-let Users = Models.users,
+let users = Models.users,
   JWTStrategy = passportJWT.Strategy,
   ExtractJWT = passportJWT.ExtractJwt;
 //----------------------------------------------------------------------------------------------------// LOCAL STRATEGY
-  passport.use(new LocalStrategy({
+passport.use(new LocalStrategy({
   usernameField: 'UserName',
   passwordField: 'Password'
 }, (UserName, Password, callback) => {
   console.log(UserName + '  ' + Password);
-  Users.findOne({ UserName: UserName }, (error, user) => {
+  users.findOne({ UserName: UserName }, (error, users) => {
     if (error) {
       console.log(error);
       return callback(error);
     }
 
-    if (!user) {
-      console.log('Incorrect Username');
-      return callback(null, false, {message: 'Incorrect Username or Password.'});
+    if (!users) {
+      console.log('Incorrect Username!!');
+      return callback(null, false, {message: 'Incorrect Username!!'});
     }
 
-    console.log('Logged In...');
-    return callback(null, user);
+    if (!users.validatePassword(Password)) {
+      console.log('incorrect password');
+      return callback(null, false, {message: 'Incorrect Password!!'});
+    }
+
+    console.log('New User Created');
+    return callback(null, users);
   });
 }));
 //----------------------------------------------------------------------------------------------------// USE STRATEGY
@@ -38,7 +43,7 @@ passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
   secretOrKey: 'your_jwt_secret'
 }, (jwtPayload, callback) => {
-  return Users.findById(jwtPayload._id)
+  return users.findById(jwtPayload._id)
     .then((user) => {
       return callback(null, user);
     })
