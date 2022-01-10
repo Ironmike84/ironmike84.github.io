@@ -2,17 +2,17 @@
 //===========================================// MuVies MOVIE API \\==================================================
 //===================================================================================================================
 
-//-------------------------------------------------------------------------------------------------// IMPORTS 
+//-------------------------------------------------------------------------------------------------// IMPORTS Require
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/MuVies', {useNewUrlParser: true});
-const PORT = 8080
+const port = process.env.PORT || 8080;
 const morgan = require('morgan');
 const passport = require('passport');
+const { check, validationResult } = require('express-validator');
 
-
-// =================================================================================================>// MODELS //
+// =================================================================================================>// MODELS Schema
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const users = Models.users;
@@ -23,6 +23,19 @@ const favMovies = Models.favMovies;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+const cors = require('cors');
+let allowedOrigins = ['http://localhost:8080', 'mongodb://127.0.0.1:27017/MuVies', ];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      return callback(new Error(message ), false);
+    }
+    return callback(null, true);
+  }
+}));
 let auth = require('./auth')(app);
 require('./passport');
 //-----------------------------------------------------------------------------------------------------// USE MORGAN (Not sure WHY?)
@@ -157,7 +170,9 @@ app.get('/favMovies',passport.authenticate('jwt', { session: false }), (req, res
 //---------------------------------------------------------------------------------------------// POST NEW FAV MOVIE
 app.post('/favMovies/newFav/:UserName',passport.authenticate('jwt', { session: false }), (req, res) => {
   favMovies.findOneAndUpdate({ '_id.UserName': req.params.UserName }, {
-    $push: {"FavoriteMovies":{}}
+    $push: {"FavoriteMovies":[{"_id": req.body._id,
+                            "Title": req.body.Title,
+                            "Genre": req.body.genres}]}
 },
    { new: true }, // This line makes sure that the updated document is returned
   (err, updatedUser) => {
@@ -171,12 +186,14 @@ app.post('/favMovies/newFav/:UserName',passport.authenticate('jwt', { session: f
 });
 //------------------------------------------------------------------------------------------// DELETE Favorite Movie
 app.delete('/favMovies/:UserName/delete/:id',passport.authenticate('jwt', { session: false }), (req, res) => {
-  favMovies.deleteOne({'_id.UserName': req.params.UserName, _id: req.params.id })
-    .then((favMovie) => {
-      if (!favMovie) {
-        res.status(400).send('ID: ' + req.params.id + ' was not found');
+  favMovies.findOne({ '_id.UserName': req.params.UserName})
+    .then((favMovies) => {
+
+      if (!favMovies) {
+        res.status(400).send('ID: ' + req.params._id + ' was not found!!');
       } else {
-        res.status(200).send('ID: ' + req.params.id + ' was deleted.');
+        favMovies.deleteOne({"FavoriteMovies":[{"_id:": `ObjectId:${req.params._id}`}]});
+        res.status(200).send('ID: ' + req.params._id + ' was deleted!');
       }
     })
     .catch((err) => {
@@ -189,8 +206,8 @@ app.delete('/favMovies/:UserName/delete/:id',passport.authenticate('jwt', { sess
 
 
 //--------------------------------------------------------------------------------------------// GET Users By Username
-app.get('/users/:UserName', (req, res) => {
-  Users.findOne({ UserName: req.params.UserName })
+app.get('/users/:UserName', passport.authenticate('jwt', { session: false }),(req, res) => {
+  users.findOne({ UserName: req.params.UserName })
     .then((Users) => {
       res.json(Users);
     })
@@ -200,7 +217,7 @@ app.get('/users/:UserName', (req, res) => {
     });
 });
 //--------------------------------------------------------------------------------------------------// GET All Users
-app.get('/users', (req, res) => {
+app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
   users.find()
     .then((users) => {
       res.status(201).json(users);
@@ -211,39 +228,57 @@ app.get('/users', (req, res) => {
     });
 });
 //------------------------------------------------------------------------------------------------// CREATE NEW USER
-app.post('/users/NewUser/:UserName', (req, res) => {
-  users.findOne({ UserName: req.body.UserName })
+app.post('/Users/NewUser/:UserName', (req, res) => {
+  [
+    check('Username', 'Username is required').isLength({min: 5}),
+    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail()
+  ], (req, res) => {
+
+  // check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }}
+
+
+    let hashedPassword = users.hashPassword(req.body.Password);
+  users.findOne({ UserName: req.body.UserName }) // Search to see if a user with the requested username already exists
     .then((user) => {
       if (user) {
-        return res.status(400).send(req.body.UserName + 'already exists');
+      //If the user is found, send a response that it already exists
+        return res.status(400).send(req.body.UserName + ' already exists');
       } else {
         users
-          .create(
-            { _id: req.body._id,
-              UserName: req.body.UserName,
-              Password: req.body.Password,
-              Email: req.body.Email,
-              Birthday: req.body.Birthday,
-            FavoriteMovies:[req.body.favMovies],
-            ImagePath: req.body.ImagePath,
-          })
-          .then((user) =>{res.status(201).json(user) })
+        .create(
+          { _id: req.body._id,
+            UserName: req.body.UserName,
+            Password: hashedPassword,
+            Email: req.body.Email,
+            Birthday: req.body.Birthday,
+          FavoriteMovies:[req.body.favMovies],
+          ImagePath: req.body.ImagePath,
+        })
+        .then((user) => { res.status(201).json(user) })
         .catch((error) => {
           console.error(error);
           res.status(500).send('Error: ' + error);
-        })
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send('Error: ' + error);
-    });
+        });
+    }
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
+  });
 });
+
 //----------------------------------------------------------------------------------------------------// DELETE User
 app.delete('/users/remove/:UserName', passport.authenticate('jwt', { session: false }),(req, res) => {
-    Users.deleteOne({ "_id.UserName": req.params.UserName })
-      .then((User) => {
-        if (!User) {
+    users.deleteOne({ UserName: req.params.UserName })
+      .then((users) => {
+        if (!users) {
           res.status(400).send(req.params.UserName + ' was not found');
         } else {
           res.status(200).send(req.params.UserName + ' was deleted.');
@@ -261,4 +296,7 @@ app.use((err, req, res, next) => {
     res.status(500).send('Oh No!!! Something broke!');
   });
 //-----------------------------------------------------------------------------------------------------// PORT CALL
-app.listen(PORT, ()=>(console.log(`Listening On Port: ${PORT}`)));
+
+app.listen(port, '0.0.0.0',() => {
+ console.log('Listening on Port ' + port);
+});
