@@ -2,10 +2,9 @@
   "name": "movie_api",
   "version": "1.0.0",
   "main": "index.js",
-  "documentation": "public/documentation.html",
+  "documentation": "documentation.html",
   "scripts": {
-    "start": "node index.js",
-    "watch": "nodemon index.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
