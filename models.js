@@ -3,7 +3,6 @@
 
 //------------------------------------------------------------------------------// IMPORTS Require
 const mongoose = require('mongoose');
-mongoose.connect(process.env.CONNECTION_URI,);
 const bcrypt = require('bcrypt');
 //------------------------------------------------------------------------------// MOVIE MODEL SCHEMA
 let movieSchema = mongoose.Schema({
