@@ -3,7 +3,7 @@
 
 //------------------------------------------------------------------------------// IMPORTS Require
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/MuVies', { autoIndex: false });
+mongoose.connect(process.env.CONNECTION_URI,);
 const bcrypt = require('bcrypt');
 //------------------------------------------------------------------------------// MOVIE MODEL SCHEMA
 let movieSchema = mongoose.Schema({
