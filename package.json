@@ -1,13 +1,13 @@
 {
   "name": "movie_api",
   "version": "1.0.0",
-  "main": "index.html",
-  "documentation": "/public/documentation.html",
+  "main": "index.js",
+  "documentation": "/documentation.html",
   "scripts": {
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mike Gross",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -30,5 +30,5 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {},
-  "description": ""
+  "description": "Movie Application that allows vistor to create a user search for Movies, Directors, Genres, and view, add, or delete their own favorite Movies."
 }
