@@ -1,8 +1,8 @@
 {
   "name": "movie_api",
   "version": "1.0.0",
-  "main": "index.js",
-  "documentation": "documentation.html",
+  "main": "index.html",
+  "documentation": "/public/documentation.html",
   "scripts": {
     "start": "node index.js"
   },
