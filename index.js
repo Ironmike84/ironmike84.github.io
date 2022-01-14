@@ -19,12 +19,13 @@ const users = Models.users;
 const Directors = Models.Directors;
 const genres = Models.genres;
 const favMovies = Models.favMovies;
+const actors = Models.actors;
 //===================================================================================================//BODY Parser
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'mongodb://127.0.0.1:27017/MuVies','mongodb://localhost:27017/MuVies','https://muvies-app.herokuapp.com/','https://dashboard.heroku.com/apps' ];
+let allowedOrigins = ['http://localhost:8080', 'mongodb://127.0.0.1:27017/MuVies','mongodb://localhost:27017/MuVies' ];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -47,7 +48,7 @@ app.use(express.static('public'));
 app.use('/public', express.static('public'));
 
 //--------------------------------------------------------------------------------------------------// GET ALL Movies
-app.get('/movies', passport.authenticate('jwt', { session: false }),(req, res) => {
+app.get('/Movies', passport.authenticate('jwt', { session: false }),(req, res) => {
   Movies.find()
     .then((Movies) => {
       res.status(201).json(Movies);
@@ -82,6 +83,22 @@ app.get('/Movies/Genre/:Name',passport.authenticate('jwt', { session: false }),(
     res.status(500).send('Error: ' + err);
   });
 });
+
+  //------------------------------------------------------------------------------------// GET Movie by Director Name
+  app.get('/Movies/Actors/:Name',passport.authenticate('jwt', { session: false }),(req, res) => {
+
+    actors.findOne({ 'actor.Name': req.params.Name })
+    .then((actor) => {
+      res.json(actor);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+  });
+
+
+
 
   //------------------------------------------------------------------------------------// GET Movie by Director Name
   app.get('/Movies/Director/:Name',passport.authenticate('jwt', { session: false }),(req, res) => {
