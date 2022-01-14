@@ -21,6 +21,7 @@ let movieSchema = mongoose.Schema({
           Birth: String,
           Death: String,
         },
+        Actors: [{type: Object }],
         Rating: String,
         Release: String,
         ImagePath: String,
@@ -69,13 +70,23 @@ let favMoviesSchema = mongoose.Schema({
   FavoriteMovies: [{_id:Object}]
 })
 
+//------------------------------------------------------------------------------// FAVMOVIES MODEL SCHEMA
+let actorsSchema = mongoose.Schema({
+  _id: {type: Object},
+  Name: String,
+  Bio: String,
+  Birth: String,
+  Death: String,
+  ImagePath: String,
+})
+
 //------------------------------------------------------------------------------// MODELS Variables
   let Movie = mongoose.model('Movie', movieSchema);
   let users = mongoose.model('users', usersSchema);
   let Directors = mongoose.model('Directors', directorSchema);
   let genres = mongoose.model('genres', genreSchema);
   let favMovies = mongoose.model('favMovies', favMoviesSchema);
-
+  let actors = mongoose.model('actors', actorsSchema);
 
 //------------------------------------------------------------------------------// EXPORT Models
   module.exports.Movie = Movie;
@@ -83,4 +94,4 @@ let favMoviesSchema = mongoose.Schema({
   module.exports.Directors = Directors;
   module.exports.genres = genres;
   module.exports.favMovies = favMovies;
-
+  module.exports.actors = actors;
