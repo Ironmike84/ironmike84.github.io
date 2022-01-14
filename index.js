@@ -84,10 +84,10 @@ app.get('/Movies/Genre/:Name',passport.authenticate('jwt', { session: false }),(
   });
 });
 
-  //------------------------------------------------------------------------------------// GET Movie by Director Name
-  app.get('/Movies/Actors/:Name',passport.authenticate('jwt', { session: false }),(req, res) => {
+  //------------------------------------------------------------------------------------// GET All Actors
+  app.get('/Movies/Actors',passport.authenticate('jwt', { session: false }),(req, res) => {
 
-    actors.findOne({ 'actors.Name': req.params.Name })
+    actors.find()
     .then((actors) => {
       res.json(actors);
     })
@@ -96,10 +96,18 @@ app.get('/Movies/Genre/:Name',passport.authenticate('jwt', { session: false }),(
       res.status(500).send('Error: ' + err);
     });
   });
+//------------------------------------------------------------------------------------// GET Actor by Name
+  app.get('/Movies/Actors/:Name',passport.authenticate('jwt', { session: false }),(req, res) => {
 
-
-
-
+    actors.findOne({ Name: req.params.Name })
+    .then((actors) => {
+      res.json(actors);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+  });
   //------------------------------------------------------------------------------------// GET Movie by Director Name
   app.get('/Movies/Director/:Name',passport.authenticate('jwt', { session: false }),(req, res) => {
 
