@@ -86,9 +86,9 @@ app.get('/Movies/Genre/:Name',passport.authenticate('jwt', { session: false }),(
 
 
 //------------------------------------------------------------------------------------// GET All Actors
-  app.get('/Movies/Actors',passport.authenticate('jwt', { session: false }),(req, res) => {
+  app.get('/Actors',passport.authenticate('jwt', { session: false }),(req, res) => {
 
-    actors.find(actors)
+    actors.find()
     .then((actors) => {
       res.json(actors);
     })
