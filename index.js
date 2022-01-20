@@ -25,7 +25,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const cors = require('cors');
-let allowedOrigins = ['https://dashboard.heroku.com/apps, https://muvies-app.herokuapp.com/','http://localhost:8080', 'mongodb://127.0.0.1:27017/MuVies','mongodb://localhost:27017/MuVies' ];
+let allowedOrigins = ['localhost/:1','http://localhost:51341','https://dashboard.heroku.com/apps, https://muvies-app.herokuapp.com/','http://localhost:8080', 'mongodb://127.0.0.1:27017/MuVies','mongodb://localhost:27017/MuVies' ];
 
 app.use(cors({
   origin: (origin, callback) => {
