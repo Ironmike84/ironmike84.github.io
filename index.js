@@ -39,7 +39,7 @@ app.use(express.static('public'));
 app.use('/public', express.static('public'));
 
 //--------------------------------------------------------------------------------------------------// GET ALL Movies
-app.get('/Movies', passport.authenticate('jwt', { session: false }),(req, res) => {
+app.get('/Movies',{ session: false }),(req, res) => {
   Movies.find()
     .then((Movies) => {
       res.status(201).json(Movies);
