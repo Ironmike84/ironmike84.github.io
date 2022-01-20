@@ -25,7 +25,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'mongodb://127.0.0.1:27017/MuVies','mongodb://localhost:27017/MuVies' ];
+let allowedOrigins = ['https://dashboard.heroku.com/apps, https://muvies-app.herokuapp.com/','http://localhost:8080', 'mongodb://127.0.0.1:27017/MuVies','mongodb://localhost:27017/MuVies' ];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -48,7 +48,7 @@ app.use(express.static('public'));
 app.use('/public', express.static('public'));
 
 //--------------------------------------------------------------------------------------------------// GET ALL Movies
-app.get('/Movies',(req, res) => {
+app.get('/Movies', passport.authenticate('jwt', { session: false }),(req, res) => {
   Movies.find()
     .then((Movies) => {
       res.status(201).json(Movies);
@@ -84,23 +84,10 @@ app.get('/Movies/Genre/:Name',passport.authenticate('jwt', { session: false }),(
   });
 });
 
-
-//------------------------------------------------------------------------------------// GET All Actors
-  app.get('/actors',passport.authenticate('jwt', { session: false }),(req, res) => {
-
-    actors.find()
-    .then((actors) => {
-      res.json(actors);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-  });
   //------------------------------------------------------------------------------------// GET Movie by Director Name
-  app.get('/Actors/:Name',passport.authenticate('jwt', { session: false }),(req, res) => {
+  app.get('/Movies/Actors/:Name',passport.authenticate('jwt', { session: false }),(req, res) => {
 
-    actors.findOne({ Name: req.params.Name })
+    actors.findOne({ 'actor.Name': req.params.Name })
     .then((actors) => {
       res.json(actors);
     })
@@ -109,6 +96,10 @@ app.get('/Movies/Genre/:Name',passport.authenticate('jwt', { session: false }),(
       res.status(500).send('Error: ' + err);
     });
   });
+
+
+
+
   //------------------------------------------------------------------------------------// GET Movie by Director Name
   app.get('/Movies/Director/:Name',passport.authenticate('jwt', { session: false }),(req, res) => {
 
