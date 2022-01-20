@@ -4,7 +4,7 @@
   "main": "index.js",
   "documentation": "/documentation.html",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.html"
   },
   "keywords": [],
   "author": "Mike Gross",
