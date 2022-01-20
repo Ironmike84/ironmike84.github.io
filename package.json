@@ -1,10 +1,10 @@
 {
   "name": "movie_api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.html",
   "documentation": "/documentation.html",
   "scripts": {
-    "start": "node index.html"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "Mike Gross",
