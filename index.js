@@ -38,7 +38,7 @@ app.use(express.static('public'));
 app.use('/public', express.static('public'));
 
 //--------------------------------------------------------------------------------------------------// GET ALL Movies
-app.get('/Movies',passport.authenticate('jwt', { session: false }),(req, res) => {
+app.get('/Movies'),(req, res) => {
   Movies.find()
     .then((Movies) => {
       res.status(201).json(Movies);
@@ -47,7 +47,7 @@ app.get('/Movies',passport.authenticate('jwt', { session: false }),(req, res) =>
       console.error(err);
       res.status(500).send('Error: ' + err);
     });
-})
+}
 //---------------------------------------------------------------------------------------------// GET Movie By Title
 app.get('/Movies/:Title',passport.authenticate('jwt', { session: false }),(req, res) => {
 
