@@ -14,7 +14,7 @@ const { check, validationResult } = require('express-validator');
 
 // =================================================================================================>// MODELS Schema
 const Models = require('./models.js');
-const movies = Models.movie;
+const Movies = Models.Movie;
 const users = Models.users;
 const Directors = Models.Directors;
 const genres = Models.genres;
@@ -38,10 +38,10 @@ app.use(express.static('public'));
 app.use('/public', express.static('public'));
 
 //--------------------------------------------------------------------------------------------------// GET ALL Movies
-app.get('/movies'),passport.authenticate('jwt', { session: false }),(req, res) => {
-  movies.find()
-    .then((movies) => {
-      res.status(201).json(movies);
+app.get('/Movies'),passport.authenticate('jwt', { session: false }),(req, res) => {
+  Movies.find()
+    .then((Movies) => {
+      res.status(201).json(Movies);
     })
     .catch((err) => {
       console.error(err);
@@ -49,11 +49,11 @@ app.get('/movies'),passport.authenticate('jwt', { session: false }),(req, res) =
     });
 }
 //---------------------------------------------------------------------------------------------// GET Movie By Title
-app.get('/movies/:Title',passport.authenticate('jwt', { session: false }),(req, res) => {
+app.get('/Movies/:Title',passport.authenticate('jwt', { session: false }),(req, res) => {
 
-    movies.findOne({ Title: req.params.Title })
-    .then((movies) => {
-      res.json(movies);
+    Movies.findOne({ Title: req.params.Title })
+    .then((Movies) => {
+      res.json(Movies);
     })
     .catch((err) => {
       console.error(err);
