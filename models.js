@@ -73,7 +73,7 @@ let actorsSchema = mongoose.Schema({
 })
 
 //------------------------------------------------------------------------------// MODELS Variables
-  let Movie = mongoose.model('Movie', movieSchema);
+  let Movie = mongoose.model('movie', movieSchema);
   let users = mongoose.model('users', usersSchema);
   let Directors = mongoose.model('Directors', directorSchema);
   let genres = mongoose.model('genres', genreSchema);
@@ -81,7 +81,7 @@ let actorsSchema = mongoose.Schema({
   let actors = mongoose.model('actors', actorsSchema);
 
 //------------------------------------------------------------------------------// EXPORT Models
-  module.exports.Movie = Movie;
+  module.exports.movie = movie;
   module.exports.users = users;
   module.exports.Directors = Directors;
   module.exports.genres = genres;
