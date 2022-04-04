@@ -25,7 +25,6 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const cors = require('cors');
-const cors = require('cors');
 app.use(cors());
 
 let auth = require('./auth')(app);
