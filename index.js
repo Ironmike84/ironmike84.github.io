@@ -139,7 +139,7 @@ app.get('/directors',passport.authenticate('jwt', { session: false }),(req, res)
 });
 //-------------------------------------------------------------------------------------------------// GET Director
 app.get('/directors/:Name',passport.authenticate('jwt', { session: false }), (req, res) => {
-    Directors.findOne({ Name: req.params.Name })
+    Directors.find({ Name: req.params.Name })
     .then((Directors) => {
       res.json(Directors);
     })
