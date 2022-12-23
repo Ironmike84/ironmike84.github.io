@@ -17,7 +17,7 @@
     "init": "^0.1.2",
     "javascript": "^1.0.0",
     "json": "^11.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.1.4",
     "morgan": "^1.10.0",
     "node": "^17.2.0",
